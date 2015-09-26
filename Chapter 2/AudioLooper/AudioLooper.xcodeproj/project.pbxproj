@@ -1,0 +1,337 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C47DB4501BB750D7001D0166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DB44F1BB750D7001D0166 /* AppDelegate.swift */; };
+		C47DB4551BB750D7001D0166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47DB4531BB750D7001D0166 /* Main.storyboard */; };
+		C47DB4571BB750D7001D0166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47DB4561BB750D7001D0166 /* Assets.xcassets */; };
+		C49A087A1BB7517900E1B515 /* bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08701BB7517900E1B515 /* bass.caf */; settings = {ASSET_TAGS = (); }; };
+		C49A087B1BB7517900E1B515 /* drums.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08711BB7517900E1B515 /* drums.caf */; settings = {ASSET_TAGS = (); }; };
+		C49A087C1BB7517900E1B515 /* guitar.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08721BB7517900E1B515 /* guitar.caf */; settings = {ASSET_TAGS = (); }; };
+		C49A087D1BB7517900E1B515 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08731BB7517900E1B515 /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A087E1BB7517900E1B515 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08741BB7517900E1B515 /* PlayerController.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A087F1BB7517900E1B515 /* ControlKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08761BB7517900E1B515 /* ControlKnob.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A08801BB7517900E1B515 /* IndicatorLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08771BB7517900E1B515 /* IndicatorLight.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A08811BB7517900E1B515 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08781BB7517900E1B515 /* PlayButton.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A08821BB7517900E1B515 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08791BB7517900E1B515 /* UIColorExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C47DB44C1BB750D7001D0166 /* AudioLooper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioLooper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C47DB44F1BB750D7001D0166 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C47DB4541BB750D7001D0166 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C47DB4561BB750D7001D0166 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C47DB45B1BB750D7001D0166 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C49A08701BB7517900E1B515 /* bass.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bass.caf; sourceTree = "<group>"; };
+		C49A08711BB7517900E1B515 /* drums.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = drums.caf; sourceTree = "<group>"; };
+		C49A08721BB7517900E1B515 /* guitar.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = guitar.caf; sourceTree = "<group>"; };
+		C49A08731BB7517900E1B515 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C49A08741BB7517900E1B515 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		C49A08761BB7517900E1B515 /* ControlKnob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlKnob.swift; sourceTree = "<group>"; };
+		C49A08771BB7517900E1B515 /* IndicatorLight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorLight.swift; sourceTree = "<group>"; };
+		C49A08781BB7517900E1B515 /* PlayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		C49A08791BB7517900E1B515 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C47DB4491BB750D7001D0166 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C47DB4431BB750D7001D0166 = {
+			isa = PBXGroup;
+			children = (
+				C47DB44E1BB750D7001D0166 /* AudioLooper */,
+				C47DB44D1BB750D7001D0166 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C47DB44D1BB750D7001D0166 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C47DB44C1BB750D7001D0166 /* AudioLooper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C47DB44E1BB750D7001D0166 /* AudioLooper */ = {
+			isa = PBXGroup;
+			children = (
+				C47DB44F1BB750D7001D0166 /* AppDelegate.swift */,
+				C49A08731BB7517900E1B515 /* MainViewController.swift */,
+				C49A08741BB7517900E1B515 /* PlayerController.swift */,
+				C47DB4531BB750D7001D0166 /* Main.storyboard */,
+				C49A08751BB7517900E1B515 /* Views */,
+				C49A08831BB751AA00E1B515 /* Resources */,
+			);
+			path = AudioLooper;
+			sourceTree = "<group>";
+		};
+		C49A086F1BB7517900E1B515 /* Loops */ = {
+			isa = PBXGroup;
+			children = (
+				C49A08701BB7517900E1B515 /* bass.caf */,
+				C49A08711BB7517900E1B515 /* drums.caf */,
+				C49A08721BB7517900E1B515 /* guitar.caf */,
+			);
+			path = Loops;
+			sourceTree = "<group>";
+		};
+		C49A08751BB7517900E1B515 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C49A08761BB7517900E1B515 /* ControlKnob.swift */,
+				C49A08771BB7517900E1B515 /* IndicatorLight.swift */,
+				C49A08781BB7517900E1B515 /* PlayButton.swift */,
+				C49A08791BB7517900E1B515 /* UIColorExtensions.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C49A08831BB751AA00E1B515 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C47DB45B1BB750D7001D0166 /* Info.plist */,
+				C47DB4561BB750D7001D0166 /* Assets.xcassets */,
+				C49A086F1BB7517900E1B515 /* Loops */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C47DB44B1BB750D7001D0166 /* AudioLooper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C47DB45E1BB750D7001D0166 /* Build configuration list for PBXNativeTarget "AudioLooper" */;
+			buildPhases = (
+				C47DB4481BB750D7001D0166 /* Sources */,
+				C47DB4491BB750D7001D0166 /* Frameworks */,
+				C47DB44A1BB750D7001D0166 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AudioLooper;
+			productName = AudioLooper;
+			productReference = C47DB44C1BB750D7001D0166 /* AudioLooper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C47DB4441BB750D7001D0166 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = "TapHarmonic, LLC";
+				TargetAttributes = {
+					C47DB44B1BB750D7001D0166 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = C47DB4471BB750D7001D0166 /* Build configuration list for PBXProject "AudioLooper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C47DB4431BB750D7001D0166;
+			productRefGroup = C47DB44D1BB750D7001D0166 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C47DB44B1BB750D7001D0166 /* AudioLooper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C47DB44A1BB750D7001D0166 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C49A087C1BB7517900E1B515 /* guitar.caf in Resources */,
+				C49A087B1BB7517900E1B515 /* drums.caf in Resources */,
+				C49A087A1BB7517900E1B515 /* bass.caf in Resources */,
+				C47DB4571BB750D7001D0166 /* Assets.xcassets in Resources */,
+				C47DB4551BB750D7001D0166 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C47DB4481BB750D7001D0166 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C47DB4501BB750D7001D0166 /* AppDelegate.swift in Sources */,
+				C49A08821BB7517900E1B515 /* UIColorExtensions.swift in Sources */,
+				C49A08801BB7517900E1B515 /* IndicatorLight.swift in Sources */,
+				C49A087D1BB7517900E1B515 /* MainViewController.swift in Sources */,
+				C49A087E1BB7517900E1B515 /* PlayerController.swift in Sources */,
+				C49A087F1BB7517900E1B515 /* ControlKnob.swift in Sources */,
+				C49A08811BB7517900E1B515 /* PlayButton.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C47DB4531BB750D7001D0166 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C47DB4541BB750D7001D0166 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C47DB45C1BB750D7001D0166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C47DB45D1BB750D7001D0166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C47DB45F1BB750D7001D0166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AudioLooper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.AudioLooper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C47DB4601BB750D7001D0166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = AudioLooper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.AudioLooper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C47DB4471BB750D7001D0166 /* Build configuration list for PBXProject "AudioLooper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C47DB45C1BB750D7001D0166 /* Debug */,
+				C47DB45D1BB750D7001D0166 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C47DB45E1BB750D7001D0166 /* Build configuration list for PBXNativeTarget "AudioLooper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C47DB45F1BB750D7001D0166 /* Debug */,
+				C47DB4601BB750D7001D0166 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C47DB4441BB750D7001D0166 /* Project object */;
+}
