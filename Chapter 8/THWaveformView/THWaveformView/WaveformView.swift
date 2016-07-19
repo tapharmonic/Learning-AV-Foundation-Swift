@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,15 +26,15 @@
 import UIKit
 import AVFoundation
 
-class THWaveformView: UIView {
+class WaveformView: UIView {
 
-    let THWidthScaling: CGFloat = 0.95
-    let THHeightScaling: CGFloat = 0.85
+    let widthScaling: CGFloat = 0.95
+    let heightScaling: CGFloat = 0.85
 
-    var asset: AVAsset! {
+    var asset: AVAsset? {
         didSet {
-            SampleDataProvider.loadAudioSamplesFromAsset(asset) {
-                sampleData in
+            guard let asset = asset else { return }
+            SampleDataProvider.loadAudioSamples(in: asset) { sampleData in
                 if let sampleData = sampleData {
                     self.filter = SampleDataFilter(sampleData: sampleData)
                     self.loadingView.stopAnimating()
@@ -44,10 +44,10 @@ class THWaveformView: UIView {
         }
     }
 
-    var waveColor = UIColor.whiteColor() {
+    var waveColor = UIColor.white() {
         didSet {
             layer.borderWidth = 2.0
-            layer.borderColor = waveColor.CGColor
+            layer.borderColor = waveColor.cgColor
             setNeedsDisplay()
         }
     }
@@ -66,58 +66,56 @@ class THWaveformView: UIView {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear()
         layer.cornerRadius = 2.0
         layer.masksToBounds = true
 
-        loadingView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        loadingView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         addSubview(loadingView)
         loadingView.startAnimating()
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
 
-        guard let filteredSamples = filter?.filteredSamplesForSize(bounds.size) else {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+
+        guard let filteredSamples = filter?.filteredSamples(for: bounds.size) else {
             return
         }
 
-        let context = UIGraphicsGetCurrentContext();
+        context.scale(x: widthScaling, y: heightScaling)
 
-        CGContextScaleCTM(context, THWidthScaling, THHeightScaling)
+        let xOffset = bounds.size.width - (bounds.size.width * widthScaling)
+        let yOffset = bounds.size.height - (bounds.size.height * heightScaling)
+        context.translate(x: xOffset / 2, y: yOffset / 2);
 
-        let xOffset = bounds.size.width - (bounds.size.width * THWidthScaling)
-        let yOffset = bounds.size.height - (bounds.size.height * THHeightScaling)
-        CGContextTranslateCTM(context, xOffset / 2, yOffset / 2);
-
-        let midY = CGRectGetMidY(rect)
-
-        let halfPath = CGPathCreateMutable()
-        CGPathMoveToPoint(halfPath, nil, 0.0, midY)
+        let halfPath = CGMutablePath()
+        halfPath.moveTo(nil, x: 0.0, y: rect.midY)
 
         for i in 0..<filteredSamples.count {
             let sample = CGFloat(filteredSamples[i])
-            CGPathAddLineToPoint(halfPath, nil, CGFloat(i), midY - sample)
+            halfPath.addLineTo(nil, x: CGFloat(i), y: rect.midY - sample)
         }
 
-        CGPathAddLineToPoint(halfPath, nil, CGFloat(filteredSamples.count), midY)
+        halfPath.addLineTo(nil, x: CGFloat(filteredSamples.count), y: rect.midY)
 
-        let fullPath = CGPathCreateMutable()
-        CGPathAddPath(fullPath, nil, halfPath)
+        let fullPath = CGMutablePath()
+        fullPath.addPath(nil, path: halfPath)
 
-        var transform = CGAffineTransformIdentity;
-        transform = CGAffineTransformTranslate(transform, 0, CGRectGetHeight(rect))
-        transform = CGAffineTransformScale(transform, 1.0, -1.0)
-        CGPathAddPath(fullPath, &transform, halfPath)
+        var transform = CGAffineTransform.identity;
+        transform = transform.translateBy(x: 0, y: rect.height)
+        transform = transform.scaleBy(x: 1.0, y: -1.0)
+        fullPath.addPath(&transform, path: halfPath)
 
-        CGContextAddPath(context, fullPath)
-        CGContextSetFillColorWithColor(context, waveColor.CGColor)
-        CGContextDrawPath(context, .Fill)
+        context.addPath(fullPath)
+        context.setFillColor(waveColor.cgColor)
+        context.drawPath(using: .fill)
     }
 
     override func layoutSubviews() {
         let size = loadingView.frame.size
-        let x = (bounds.size.width - size.width) / 2.0
-        let y = (bounds.size.height - size.height) / 2.0
+        let x = (bounds.width - size.width) / 2.0
+        let y = (bounds.height - size.height) / 2.0
         loadingView.frame = CGRect(x: x, y: y, width: size.width, height: size.height)
     }
 }

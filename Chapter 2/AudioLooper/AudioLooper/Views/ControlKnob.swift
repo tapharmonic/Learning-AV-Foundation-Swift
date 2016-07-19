@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -42,7 +42,7 @@ class ControlKnob: UIControl {
     private var animated = true
     private var angle = 0.0
     private var indicatorView: IndicatorLight!
-    private var touchOrigin = CGPointZero
+    private var touchOrigin = CGPoint.zero
 
     @IBInspectable var minimumValue:Double = -1.0
     @IBInspectable var maximumValue:Double = 1.0
@@ -67,7 +67,7 @@ class ControlKnob: UIControl {
     }
 
     func setupView() {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear()
 
         indicatorView = IndicatorLight(frame: bounds)
         indicatorView.lightColor = indicatorLightColor()
@@ -77,10 +77,10 @@ class ControlKnob: UIControl {
     }
 
     func indicatorLightColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white()
     }
 
-    func clampAngle(angle: Double) -> Double {
+    func clampAngle(_ angle: Double) -> Double {
         if angle < -MAX_ANGLE {
             return -MAX_ANGLE
         } else if angle > MAX_ANGLE {
@@ -89,22 +89,22 @@ class ControlKnob: UIControl {
         return angle
     }
 
-    func angleForValue(value: Double) -> Double {
+    func angleForValue(_ value: Double) -> Double {
         return ((value - minimumValue) / (maximumValue - minimumValue) - 0.5) * (MAX_ANGLE * 2.0)
     }
 
-    func valueForAngle(angle: Double) -> Double {
+    func valueForAngle(_ angle: Double) -> Double {
         return (angle / (MAX_ANGLE * 2.0) + 0.5) * (maximumValue - minimumValue) + minimumValue
     }
 
-    func valueForPosition(point: CGPoint) -> Double {
+    func valueForPosition(_ point: CGPoint) -> Double {
         let delta = Double(touchOrigin.y - point.y)
         let newAngle = clampAngle(delta * SCALING_FACTOR + angle)
         let newValue = valueForAngle(newAngle)
         return newValue
     }
 
-    func setValue(newValue: Double, animated: Bool) {
+    func setValue(_ newValue: Double, animated: Bool) {
         let oldValue = self.value
         if newValue < minimumValue {
             _value = minimumValue
@@ -116,38 +116,39 @@ class ControlKnob: UIControl {
         valueDidChangeFrom(oldValue, toValue: _value, animated: animated)
     }
 
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        let point = touch.locationInView(self)
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let point = touch.location(in: self)
         touchOrigin = point
         angle = angleForValue(self.value)
-        highlighted = true
+        isHighlighted = true
         setNeedsDisplay()
         return true
     }
 
-    func handleTouch(touch: UITouch) -> Bool {
+    func handleTouch(_ touch: UITouch) -> Bool {
         if touch.tapCount > 1 {
             setValue(defaultValue, animated: true)
             return false
         }
-        let point = touch.locationInView(self)
+        let point = touch.location(in: self)
         self.value = valueForPosition(point)
         return true
     }
 
-    override func continueTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         if handleTouch(touch) {
-            sendActionsForControlEvents(.ValueChanged)
+            sendActions(for: .valueChanged)
         }
         return true
     }
 
-    override func endTrackingWithTouch(touch: UITouch?, withEvent event: UIEvent?) {
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         if let touch = touch {
-            handleTouch(touch)
-            sendActionsForControlEvents(.ValueChanged)
+            if handleTouch(touch) {
+                sendActions(for: .valueChanged)
+            }
         }
-        highlighted = false
+        isHighlighted = false
         setNeedsDisplay()
     }
 
@@ -156,49 +157,51 @@ class ControlKnob: UIControl {
         setupView()
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
+
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = UIGraphicsGetCurrentContext()
 
         // Set up Colors
         let strokeColor = UIColor(white: 0.04, alpha: 1.0)
-        var gradientLightColor = UIColor(red: 0.150, green: 0.150, blue: 0.150, alpha: 1.0)
-        var gradientDarkColor = UIColor(red: 0.210, green: 0.210, blue: 0.210, alpha: 1.0)
+        var gradientLightColor = UIColor(white: 0.150, alpha: 1.0)
+        var gradientDarkColor = UIColor(white: 0.210, alpha: 1.0)
 
-        if highlighted {
+        if isHighlighted {
             gradientLightColor = gradientLightColor.darkerColor().darkerColor()
             gradientDarkColor = gradientDarkColor.darkerColor().darkerColor()
         }
 
-        let gradientColors = [gradientLightColor.CGColor, gradientDarkColor.CGColor]
+        let gradientColors = [gradientLightColor.cgColor, gradientDarkColor.cgColor]
         let locations = [CGFloat(0.0), CGFloat(1.0)]
-        let gradient = CGGradientCreateWithColors(colorSpace, gradientColors, locations)
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors, locations: locations)
 
-        let insetRect = CGRectInset(rect, 0.5, 0.5)
+        let insetRect = rect.insetBy(dx: 0.5, dy: 0.5)
 
         // Draw Bezel
-        CGContextSetFillColorWithColor(context, strokeColor.CGColor)
-        CGContextFillEllipseInRect(context, insetRect)
+        context.setFillColor(strokeColor.cgColor)
+        context.fillEllipse(in: insetRect)
 
-        let midX = CGRectGetMidX(insetRect)
-        let midY = CGRectGetMidY(insetRect)
+        let midX = insetRect.midX
+        let midY = insetRect.midY
 
         // Draw Bezel Light Shadow Layer
-        CGContextAddArc(context, midX, midY, CGRectGetWidth(insetRect) / 2, 0, CGFloat(M_PI * 2), 1)
-        CGContextSetShadowWithColor(context, CGSizeMake(0.0, 0.5), 2.0, UIColor.darkGrayColor().CGColor)
-        CGContextFillPath(context)
+        context.addArc(centerX: midX, y: midY, radius: insetRect.width / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: 1)
+        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray().cgColor)
+        context.fillPath()
 
         // Add Clipping Region for Knob Background
-        CGContextAddArc(context, midX, midY, (CGRectGetWidth(insetRect) - 6) / 2, 0, CGFloat(M_PI * 2), 1)
-        CGContextClip(context)
+        context.addArc(centerX: midX, y: midY, radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: 1)
+        context.clip()
 
-        let startPoint = CGPointMake(midX, CGRectGetMaxY(insetRect))
-        let endPoint = CGPointMake(midX, CGRectGetMinY(insetRect))
+        let startPoint = CGPoint(x: midX, y: insetRect.maxY)
+        let endPoint = CGPoint(x: midX, y: insetRect.minY)
         
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, CGGradientDrawingOptions(rawValue: 0))
+        context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0))
     }
 
-    func valueDidChangeFrom(fromValue: Double, toValue: Double, animated: Bool) {
+    func valueDidChangeFrom(_ fromValue: Double, toValue: Double, animated: Bool) {
 
         let newAngle = angleForValue(toValue)
 
@@ -216,10 +219,10 @@ class ControlKnob: UIControl {
                 CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn),
                 CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
             ]
-            indicatorView.layer.addAnimation(animation, forKey: nil)
+            indicatorView.layer.add(animation, forKey: nil)
         }
 
-        indicatorView.transform = CGAffineTransformMakeRotation(CGFloat(newAngle * M_PI / 180.0))
+        indicatorView.transform = CGAffineTransform(rotationAngle: CGFloat(newAngle * M_PI / 180.0))
     }
 }
 

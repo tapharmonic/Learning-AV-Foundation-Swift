@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ class MainViewController: UIViewController, PlayerControllerDelegate {
         controller.delegate = self
     }
 
-    @IBAction func play(sender: PlayButton) {
+    @IBAction func play(_ sender: PlayButton) {
         if !controller.playing {
             controller.play()
             playLabel.text = NSLocalizedString("Stop", comment: "")
@@ -51,28 +51,28 @@ class MainViewController: UIViewController, PlayerControllerDelegate {
         }
 
         // Toggle play button selected state
-        playButton.selected = !playButton.selected
+        playButton.isSelected = !playButton.isSelected
     }
 
-    @IBAction func adjustVolume(sender: ControlKnob) {
+    @IBAction func adjustVolume(_ sender: ControlKnob) {
         controller.adjustVolume(sender.value, forPlayerAtIndex: sender.tag)
     }
 
-    @IBAction func adjustPan(sender: ControlKnob) {
+    @IBAction func adjustPan(_ sender: ControlKnob) {
         controller.adjustPan(sender.value, forPlayerAtIndex: sender.tag)
     }
 
-    @IBAction func adjustRate(sender: ControlKnob) {
+    @IBAction func adjustRate(_ sender: ControlKnob) {
         controller.adjustRate(sender.value)
     }
 
     func playbackBegan() {
-        playButton.selected = true
+        playButton.isSelected = true
         playLabel.text = NSLocalizedString("Stop", comment: "")
     }
 
     func playbackStopped() {
-        playButton.selected = false
+        playButton.isSelected = false
         playLabel.text = NSLocalizedString("Play", comment: "")
     }
 }

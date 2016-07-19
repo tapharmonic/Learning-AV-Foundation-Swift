@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,31 +28,31 @@ import CoreGraphics
 
 class SampleDataFilter {
 
-    let sampleData: NSData
+    let sampleData: Data
 
-    init(sampleData: NSData) {
+    init(sampleData: Data) {
         self.sampleData = sampleData
     }
 
-    func filteredSamplesForSize(size: CGSize) -> [Float] {
+    func filteredSamples(for size: CGSize) -> [Float] {
 
         var filteredSamples = [Float]()
 
-        let sampleCount = sampleData.length / sizeof(Int16)
+        let sampleCount = sampleData.count / sizeof(Int16.self)
         let binSize = Int(sampleCount / Int(size.width))
 
-        var bytes = [Int16](count: sampleData.length, repeatedValue: 0)
+        var bytes = [Int16](repeating: 0, count: sampleData.count)
 
-        sampleData.getBytes(&bytes, length:sampleData.length * sizeof(Int16))
+        (sampleData as NSData).getBytes(&bytes, length:sampleData.count * sizeof(Int16.self))
 
         var maxSample: Int16 = 0
 
-        for var i = 0; i < sampleCount; i += binSize {
-            var sampleBin = [Int16](count: binSize, repeatedValue: 0)
+        for i in stride(from: 0, to: sampleCount - 1, by: binSize) {
+            var sampleBin = [Int16](repeating: 0, count: binSize)
             for j in 0..<binSize {
                 sampleBin[j] = bytes[i + j].littleEndian
             }
-            let value = maxValueInArray(sampleBin, ofSize: binSize)
+            let value = maxValue(in: sampleBin, ofSize: binSize)
             filteredSamples.append(Float(value))
             if value > maxSample {
                 maxSample = value
@@ -67,7 +67,7 @@ class SampleDataFilter {
         return filteredSamples
     }
 
-    func maxValueInArray(values: [Int16], ofSize size: Int) -> Int16 {
+    func maxValue(in values: [Int16], ofSize size: Int) -> Int16 {
         var maxValue: Int16 = 0
         for i in 0..<size {
             if abs(values[i]) > maxValue {

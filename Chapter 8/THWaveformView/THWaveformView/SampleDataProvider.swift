@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,36 +28,36 @@ import AVFoundation
 
 class SampleDataProvider {
 
-    typealias SampleDataCompletionHandler = (NSData? -> Void)
+    typealias SampleDataCompletionHandler = ((Data?) -> Void)
 
-    static func loadAudioSamplesFromAsset(asset: AVAsset, completionHandler: SampleDataCompletionHandler) {
+    static func loadAudioSamples(in asset: AVAsset, completionHandler: SampleDataCompletionHandler) {
 
         let tracks = "tracks"
 
-        asset.loadValuesAsynchronouslyForKeys([tracks]) {
+        asset.loadValuesAsynchronously(forKeys: [tracks]) {
 
-            let status = asset.statusOfValueForKey(tracks, error: nil)
+            let status = asset.statusOfValue(forKey: tracks, error: nil)
 
-            var sampleData: NSData? = nil
+            var sampleData: Data? = nil
 
-            if status == .Loaded {
-                sampleData = readAudioSamplesFromAsset(asset)
+            if status == .loaded {
+                sampleData = readAudioSamples(in:asset)
             }
 
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 completionHandler(sampleData)
             }
         }
     }
 
-    static func readAudioSamplesFromAsset(asset: AVAsset) -> NSData? {
+    static func readAudioSamples(in asset: AVAsset) -> Data? {
 
         guard let assetReader = try? AVAssetReader(asset: asset) else {
             print("Unable to create AVAssetReader")
             return nil
         }
 
-        guard let track = asset.tracksWithMediaType(AVMediaTypeAudio).first else {
+        guard let track = asset.tracks(withMediaType: AVMediaTypeAudio).first else {
             print("No audio track found in asset")
             return nil
         }
@@ -70,24 +70,24 @@ class SampleDataProvider {
         ]
 
         let trackOutput = AVAssetReaderTrackOutput(track: track, outputSettings: outputSettings)
-        assetReader.addOutput(trackOutput)
+        assetReader.add(trackOutput)
         assetReader.startReading()
 
         let sampleData = NSMutableData()
 
-        while assetReader.status == .Reading {
+        while assetReader.status == .reading {
             if let sampleBuffer = trackOutput.copyNextSampleBuffer() {
                 if let blockBufferRef = CMSampleBufferGetDataBuffer(sampleBuffer) {
                     let length = CMBlockBufferGetDataLength(blockBufferRef)
-                    let sampleBytes = UnsafeMutablePointer<Int16>.alloc(length)
+                    let sampleBytes = UnsafeMutablePointer<Int16>(allocatingCapacity: length)
                     CMBlockBufferCopyDataBytes(blockBufferRef, 0, length, sampleBytes)
-                    sampleData.appendBytes(sampleBytes, length: length)
+                    sampleData.append(sampleBytes, length: length)
                 }
             }
         }
 
-        if assetReader.status == .Completed {
-            return sampleData
+        if assetReader.status == .completed {
+            return sampleData as Data
         } else {
             print("Failed to read audio samples from asset.")
             return nil

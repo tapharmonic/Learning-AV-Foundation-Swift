@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,19 +27,19 @@ import UIKit
 
 extension UIColor {
 
-    static func greenWaveColor() -> UIColor {
+    static func greenWave() -> UIColor {
         return UIColor(red: 0.714, green: 1.0, blue: 0.816, alpha: 1.0)
     }
 
-    static func greenBackgroundColor() -> UIColor {
-        return UIColor(red: 0.122, green: 0.618, blue: 0.240, alpha: 1.0)
-    }
-
-    static func blueWaveColor() -> UIColor {
+    static func blueWave() -> UIColor {
         return UIColor(red: 0.749, green: 0.861, blue: 0.994, alpha: 1.0)
     }
 
-    static func blueBackgroundColor() -> UIColor {
+    static func greenBackground() -> UIColor {
+        return UIColor(red: 0.122, green: 0.618, blue: 0.240, alpha: 1.0)
+    }
+
+    static func blueBackground() -> UIColor {
         return UIColor(red: 0.142, green: 0.270, blue: 0.438, alpha: 1.0)
     }
 

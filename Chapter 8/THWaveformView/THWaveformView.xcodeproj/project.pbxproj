@@ -11,12 +11,12 @@
 		C4135B7D1BBE21D00022AE33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B7C1BBE21D00022AE33 /* ViewController.swift */; };
 		C4135B801BBE21D00022AE33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4135B7E1BBE21D00022AE33 /* Main.storyboard */; };
 		C4135B821BBE21D00022AE33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4135B811BBE21D00022AE33 /* Assets.xcassets */; };
-		C4135B971BBE22AB0022AE33 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B961BBE22AB0022AE33 /* UIColorExtensions.swift */; settings = {ASSET_TAGS = (); }; };
-		C4135B991BBE22C90022AE33 /* beat.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C4135B981BBE22C90022AE33 /* beat.aiff */; settings = {ASSET_TAGS = (); }; };
-		C4135B9B1BBE22CE0022AE33 /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C4135B9A1BBE22CE0022AE33 /* keys.mp3 */; settings = {ASSET_TAGS = (); }; };
-		C4135B9D1BBE23160022AE33 /* THWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B9C1BBE23160022AE33 /* THWaveformView.swift */; settings = {ASSET_TAGS = (); }; };
-		C4135B9F1BBE2AC00022AE33 /* SampleDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B9E1BBE2AC00022AE33 /* SampleDataFilter.swift */; settings = {ASSET_TAGS = (); }; };
-		C4135BA11BBE39460022AE33 /* SampleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135BA01BBE39460022AE33 /* SampleDataProvider.swift */; settings = {ASSET_TAGS = (); }; };
+		C4135B971BBE22AB0022AE33 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B961BBE22AB0022AE33 /* UIColorExtensions.swift */; };
+		C4135B991BBE22C90022AE33 /* beat.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C4135B981BBE22C90022AE33 /* beat.aiff */; };
+		C4135B9B1BBE22CE0022AE33 /* keys.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C4135B9A1BBE22CE0022AE33 /* keys.mp3 */; };
+		C4135B9D1BBE23160022AE33 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B9C1BBE23160022AE33 /* WaveformView.swift */; };
+		C4135B9F1BBE2AC00022AE33 /* SampleDataFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135B9E1BBE2AC00022AE33 /* SampleDataFilter.swift */; };
+		C4135BA11BBE39460022AE33 /* SampleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4135BA01BBE39460022AE33 /* SampleDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		C4135B961BBE22AB0022AE33 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		C4135B981BBE22C90022AE33 /* beat.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = beat.aiff; sourceTree = "<group>"; };
 		C4135B9A1BBE22CE0022AE33 /* keys.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = keys.mp3; sourceTree = "<group>"; };
-		C4135B9C1BBE23160022AE33 /* THWaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THWaveformView.swift; sourceTree = "<group>"; };
+		C4135B9C1BBE23160022AE33 /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		C4135B9E1BBE2AC00022AE33 /* SampleDataFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleDataFilter.swift; sourceTree = "<group>"; };
 		C4135BA01BBE39460022AE33 /* SampleDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +78,7 @@
 		C4135BA21BBE43620022AE33 /* THWaveformView */ = {
 			isa = PBXGroup;
 			children = (
-				C4135B9C1BBE23160022AE33 /* THWaveformView.swift */,
+				C4135B9C1BBE23160022AE33 /* WaveformView.swift */,
 				C4135B9E1BBE2AC00022AE33 /* SampleDataFilter.swift */,
 				C4135BA01BBE39460022AE33 /* SampleDataProvider.swift */,
 			);
@@ -122,11 +122,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "TapHarmonic, LLC";
 				TargetAttributes = {
 					C4135B761BBE21D00022AE33 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -172,7 +173,7 @@
 				C4135B971BBE22AB0022AE33 /* UIColorExtensions.swift in Sources */,
 				C4135B7B1BBE21D00022AE33 /* AppDelegate.swift in Sources */,
 				C4135BA11BBE39460022AE33 /* SampleDataProvider.swift in Sources */,
-				C4135B9D1BBE23160022AE33 /* THWaveformView.swift in Sources */,
+				C4135B9D1BBE23160022AE33 /* WaveformView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +282,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.THWaveformView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -293,6 +295,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.THWaveformView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

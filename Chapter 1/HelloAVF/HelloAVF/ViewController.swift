@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -43,22 +43,22 @@ class ViewController: UITableViewController, AVSpeechSynthesizerDelegate {
         speechController.beginConversation()
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return speechStrings.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let id = indexPath.row % 2 == 0 ? "YouCell" : "AVFCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(id, forIndexPath: indexPath) as! BubbleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! BubbleCell
         cell.messageLabel.text = speechStrings[indexPath.row]
         return cell
     }
 
-    func speechSynthesizer(synthesizer: AVSpeechSynthesizer, didStartSpeechUtterance utterance: AVSpeechUtterance) {
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
         speechStrings.append(utterance.speechString)
         tableView.reloadData()
-        let indexPath = NSIndexPath(forRow: speechStrings.count - 1, inSection: 0)
-        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+        let indexPath = IndexPath(row: speechStrings.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
 }

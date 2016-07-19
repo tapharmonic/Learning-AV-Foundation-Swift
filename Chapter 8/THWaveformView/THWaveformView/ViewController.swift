@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,22 +28,22 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var keysWaveformView: THWaveformView!
-    @IBOutlet weak var beatWaveformView: THWaveformView!
+    @IBOutlet weak var keysWaveformView: WaveformView!
+    @IBOutlet weak var beatWaveformView: WaveformView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let keysURL = NSBundle.mainBundle().URLForResource("keys", withExtension: "mp3")!
-        let beatURL = NSBundle.mainBundle().URLForResource("beat", withExtension: "aiff")!
+        let keysURL = Bundle.main.urlForResource("keys", withExtension: "mp3")!
+        let beatURL = Bundle.main.urlForResource("beat", withExtension: "aiff")!
 
-        keysWaveformView.waveColor = UIColor.blueWaveColor()
-        keysWaveformView.backgroundColor = UIColor.blueBackgroundColor()
-        keysWaveformView.asset = AVURLAsset(URL: keysURL)
+        keysWaveformView.waveColor = UIColor.blueWave()
+        keysWaveformView.backgroundColor = UIColor.blueBackground()
+        keysWaveformView.asset = AVURLAsset(url: keysURL)
 
-        beatWaveformView.waveColor = UIColor.greenWaveColor()
-        beatWaveformView.backgroundColor = UIColor.greenBackgroundColor()
-        beatWaveformView.asset = AVURLAsset(URL: beatURL)
+        beatWaveformView.waveColor = UIColor.greenWave()
+        beatWaveformView.backgroundColor = UIColor.greenBackground()
+        beatWaveformView.asset = AVURLAsset(url: beatURL)
         
     }
     

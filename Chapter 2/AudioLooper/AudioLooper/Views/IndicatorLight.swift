@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,7 @@ import UIKit
 
 class IndicatorLight: UIView {
 
-    var lightColor = UIColor.whiteColor() {
+    var lightColor = UIColor.white() {
         didSet {
             setNeedsDisplay()
         }
@@ -44,30 +44,30 @@ class IndicatorLight: UIView {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clearColor()
-        userInteractionEnabled = false
+        backgroundColor = UIColor.clear()
+        isUserInteractionEnabled = false
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext();
 
-        let midX = CGRectGetMidX(rect)
-        let minY = CGRectGetMinY(rect)
-        let width = CGRectGetWidth(rect) * 0.15
-        let height = CGRectGetHeight(rect) * 0.15
-        let indicatorRect = CGRectMake(midX - (width / 2), minY + 15, width, height)
+        let midX = rect.midX
+        let minY = rect.minY
+        let width = rect.width * 0.15
+        let height = rect.height * 0.15
+        let indicatorRect = CGRect(x: midX - (width / 2), y: minY + 15, width: width, height: height)
 
         let strokeColor = lightColor.darkerColor()
-        CGContextSetStrokeColorWithColor(context, strokeColor.CGColor)
-        CGContextSetFillColorWithColor(context, self.lightColor.CGColor)
+        context?.setStrokeColor(strokeColor.cgColor)
+        context?.setFillColor(self.lightColor.cgColor)
 
         let shadowColor = lightColor.lighterColor()
-        let shadowOffset = CGSizeMake(0.0, 0.0)
+        let shadowOffset = CGSize(width: 0.0, height: 0.0)
         let blurRadius = CGFloat(2.0)
 
-        CGContextSetShadowWithColor(context, shadowOffset, blurRadius, shadowColor.CGColor)
+        context?.setShadow(offset: shadowOffset, blur: blurRadius, color: shadowColor.cgColor)
 
-        CGContextAddEllipseInRect(context, indicatorRect)
-        CGContextDrawPath(context, .FillStroke)
+        context?.addEllipse(inRect: indicatorRect)
+        context?.drawPath(using: .fillStroke)
     }
 }

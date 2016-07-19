@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -47,18 +47,18 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
 
         guitarPlayer.delegate = self
 
-        let nc = NSNotificationCenter.defaultCenter()
+        let nc = NotificationCenter.default
 
-        nc.addObserver(self, selector: "handleInterruption:", name: AVAudioSessionInterruptionNotification, object: AVAudioSession.sharedInstance())
-        nc.addObserver(self, selector: "handleRouteChange:", name: AVAudioSessionRouteChangeNotification, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleInterruption), name: NSNotification.Name.AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleRouteChange), name: NSNotification.Name.AVAudioSessionRouteChange, object: AVAudioSession.sharedInstance())
 
         players = [guitarPlayer, bassPlayer, drumsPlayer]
     }
 
-    func playerForFile(name: String) -> AVAudioPlayer {
-        let fileURL = NSBundle.mainBundle().URLForResource(name, withExtension: "caf")!
+    func playerForFile(_ name: String) -> AVAudioPlayer {
+        let fileURL = Bundle.main.urlForResource(name, withExtension: "caf")!
         do {
-            let player = try AVAudioPlayer(contentsOfURL: fileURL)
+            let player = try AVAudioPlayer(contentsOf: fileURL)
             player.numberOfLoops = -1
             player.enableRate = true
             player.prepareToPlay()
@@ -73,7 +73,7 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
         if !playing {
             let delayTime = players.first!.deviceCurrentTime + 0.01
             for player in players {
-                player.playAtTime(delayTime)
+                player.play(atTime: delayTime)
             }
             playing = true
         }
@@ -89,37 +89,37 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    func adjustRate(rate: Double) {
+    func adjustRate(_ rate: Double) {
         for player in players {
             player.rate = Float(rate)
         }
     }
 
-    func adjustPan(pan: Double, forPlayerAtIndex idx: Int) {
+    func adjustPan(_ pan: Double, forPlayerAtIndex idx: Int) {
         if isValidIndex(idx) {
             players[idx].pan = Float(pan)
         }
     }
 
-    func adjustVolume(volume: Double, forPlayerAtIndex idx: Int) {
+    func adjustVolume(_ volume: Double, forPlayerAtIndex idx: Int) {
         if isValidIndex(idx) {
             players[idx].volume = Float(volume)
         }
     }
 
-    func isValidIndex(index: Int) -> Bool {
+    func isValidIndex(_ index: Int) -> Bool {
         return index >= 0 && index < players.count
     }
 
-    func handleInterruption(notification: NSNotification) {
-        if let info = notification.userInfo {
+    func handleInterruption(_ notification: Notification) {
+        if let info = (notification as NSNotification).userInfo {
             let type = info[AVAudioSessionInterruptionTypeKey] as! AVAudioSessionInterruptionType
-            if type == .Began {
+            if type == .began {
                 stop()
                 delegate?.playbackStopped()
             } else {
                 let options = info[AVAudioSessionInterruptionOptionKey] as! AVAudioSessionInterruptionOptions
-                if options == .ShouldResume {
+                if options == .shouldResume {
                     play()
                     delegate?.playbackBegan()
                 }
@@ -127,11 +127,11 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    func handleRouteChange(notification: NSNotification) {
-        if let info = notification.userInfo {
+    func handleRouteChange(_ notification: Notification) {
+        if let info = (notification as NSNotification).userInfo {
 
             let reason = info[AVAudioSessionRouteChangeReasonKey] as! AVAudioSessionRouteChangeReason
-            if reason == .OldDeviceUnavailable {
+            if reason == .oldDeviceUnavailable {
                 let previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
                 let previousOutput = previousRoute.outputs.first!
                 if previousOutput.portType == AVAudioSessionPortHeadphones {

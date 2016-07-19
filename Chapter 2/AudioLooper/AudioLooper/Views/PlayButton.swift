@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2015 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2015 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -39,92 +39,94 @@ class PlayButton: UIButton {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clearColor()
-        tintColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear()
+        tintColor = UIColor.clear()
     }
 
     override func prepareForInterfaceBuilder() {
         setupView()
     }
 
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
             setNeedsDisplay()
         }
     }
 
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
+
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+
         let colorSpace = CGColorSpaceCreateDeviceRGB();
-        let context = UIGraphicsGetCurrentContext();
 
         // Set up Colors
         let strokeColor = UIColor(white: 0.04, alpha: 1.0)
-        var gradientLightColor = UIColor(red: 0.150, green: 0.150, blue: 0.150, alpha: 1.0)
-        var gradientDarkColor = UIColor(red: 0.210, green: 0.210, blue: 0.210, alpha: 1.0)
+        var gradientLightColor = UIColor(white: 0.150, alpha: 1.0)
+        var gradientDarkColor = UIColor(white: 0.210, alpha: 1.0)
 
-        if highlighted {
+        if isHighlighted {
             gradientLightColor = gradientLightColor.darkerColor().darkerColor()
             gradientDarkColor = gradientDarkColor.darkerColor().darkerColor()
         }
 
-        let gradientColors = [gradientLightColor.CGColor, gradientDarkColor.CGColor]
+        let gradientColors = [gradientLightColor.cgColor, gradientDarkColor.cgColor]
         let locations = [CGFloat(0.0), CGFloat(1.0)]
-        let gradient = CGGradientCreateWithColors(colorSpace, gradientColors, locations)
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors, locations: locations)
 
-        var insetRect = CGRectInset(rect, 2.0, 2.0)
+        var insetRect = rect.insetBy(dx: 2.0, dy: 2.0)
 
         // Draw Bezel
-        CGContextSetFillColorWithColor(context, strokeColor.CGColor);
+        context.setFillColor(strokeColor.cgColor);
         let bezelPath = UIBezierPath(roundedRect: insetRect, cornerRadius: 6.0)
-        CGContextAddPath(context, bezelPath.CGPath);
-        CGContextSetShadowWithColor(context, CGSizeMake(0.0, 0.5), 2.0, UIColor.darkGrayColor().CGColor);
-        CGContextDrawPath(context, .Fill);
+        context.addPath(bezelPath.cgPath);
+        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray().cgColor);
+        context.drawPath(using: .fill);
 
-        CGContextSaveGState(context);
+        context.saveGState();
         // Add Clipping Region for Knob Background
-        insetRect = CGRectInset(insetRect, 3.0, 3.0);
+        insetRect = insetRect.insetBy(dx: 3.0, dy: 3.0);
         let buttonPath = UIBezierPath(roundedRect: insetRect, cornerRadius: 4.0)
-        CGContextAddPath(context, buttonPath.CGPath);
-        CGContextClip(context);
+        context.addPath(buttonPath.cgPath);
+        context.clip();
 
-        let midX = CGRectGetMidX(insetRect);
+        let midX = insetRect.midX;
 
-        let startPoint = CGPointMake(midX, CGRectGetMaxY(insetRect));
-        let endPoint = CGPointMake(midX, CGRectGetMinY(insetRect));
+        let startPoint = CGPoint(x: midX, y: insetRect.maxY);
+        let endPoint = CGPoint(x: midX, y: insetRect.minY);
 
         // Draw Button Gradient Background
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, CGGradientDrawingOptions(rawValue: 0));
+        context.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0));
 
         // Restore graphis state
-        CGContextRestoreGState(context);
+        context.restoreGState();
 
         let fillColor = UIColor(white: 0.8, alpha: 1.0)
-        CGContextSetFillColorWithColor(context, fillColor.CGColor);
-        CGContextSetStrokeColorWithColor(context, fillColor.darkerColor().CGColor);
+        context.setFillColor(fillColor.cgColor);
+        context.setStrokeColor(fillColor.darkerColor().cgColor);
 
         let iconDim = CGFloat(24.0)
         // Draw Play Button
-        if (!self.selected) {
-            CGContextSaveGState(context);
-            CGContextTranslateCTM(context, CGRectGetMidX(rect) - (iconDim - 3) / 2, CGRectGetMidY(rect) - iconDim / 2);
-            CGContextMoveToPoint(context, 0.0, 0.0);
-            CGContextAddLineToPoint(context, 0.0, iconDim);
-            CGContextAddLineToPoint(context, iconDim, iconDim / 2);
-            CGContextClosePath(context);
-            CGContextDrawPath(context, .Fill);
-            CGContextRestoreGState(context);
+        if (!self.isSelected) {
+            context.saveGState();
+            context.translate(x: rect.midX - (iconDim - 3) / 2, y: rect.midY - iconDim / 2);
+            context.moveTo(x: 0.0, y: 0.0);
+            context.addLineTo(x: 0.0, y: iconDim);
+            context.addLineTo(x: iconDim, y: iconDim / 2);
+            context.closePath();
+            context.drawPath(using: .fill);
+            context.restoreGState();
         }
             // Draw Stop Button
         else {
-            CGContextSaveGState(context);
-            let tx = (CGRectGetWidth(rect) - iconDim) / 2;
-            let ty = (CGRectGetHeight(rect) - iconDim) / 2;
-            CGContextTranslateCTM(context, tx, ty);
-            let stopRect = CGRectMake(0.0, 0.0, iconDim, iconDim);
+            context.saveGState();
+            let tx = (rect.width - iconDim) / 2;
+            let ty = (rect.height - iconDim) / 2;
+            context.translate(x: tx, y: ty);
+            let stopRect = CGRect(x: 0.0, y: 0.0, width: iconDim, height: iconDim);
             let stopPath = UIBezierPath(roundedRect: stopRect, cornerRadius: 2.0)
-            CGContextAddPath(context, stopPath.CGPath);
-            CGContextDrawPath(context, .Fill);
-            CGContextRestoreGState(context);
+            context.addPath(stopPath.cgPath);
+            context.drawPath(using: .fill);
+            context.restoreGState();
         }
 
     }

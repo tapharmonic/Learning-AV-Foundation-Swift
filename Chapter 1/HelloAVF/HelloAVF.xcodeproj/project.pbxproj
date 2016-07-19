@@ -11,8 +11,8 @@
 		C488617B1BB7553700943C3F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C488617A1BB7553700943C3F /* ViewController.swift */; };
 		C488617E1BB7553700943C3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C488617C1BB7553700943C3F /* Main.storyboard */; };
 		C48861801BB7553700943C3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C488617F1BB7553700943C3F /* Assets.xcassets */; };
-		C4B1FA771BB755C9008E6297 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1FA751BB755C9008E6297 /* BubbleCell.swift */; settings = {ASSET_TAGS = (); }; };
-		C4B1FA781BB755C9008E6297 /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1FA761BB755C9008E6297 /* SpeechController.swift */; settings = {ASSET_TAGS = (); }; };
+		C4B1FA771BB755C9008E6297 /* BubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1FA751BB755C9008E6297 /* BubbleCell.swift */; };
+		C4B1FA781BB755C9008E6297 /* SpeechController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B1FA761BB755C9008E6297 /* SpeechController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,11 +93,12 @@
 		C488616D1BB7553700943C3F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "TapHarmonic, LLC";
 				TargetAttributes = {
 					C48861741BB7553700943C3F = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -247,6 +248,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.HelloAVF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -259,6 +261,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.HelloAVF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

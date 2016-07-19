@@ -10,15 +10,15 @@
 		C47DB4501BB750D7001D0166 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47DB44F1BB750D7001D0166 /* AppDelegate.swift */; };
 		C47DB4551BB750D7001D0166 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47DB4531BB750D7001D0166 /* Main.storyboard */; };
 		C47DB4571BB750D7001D0166 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47DB4561BB750D7001D0166 /* Assets.xcassets */; };
-		C49A087A1BB7517900E1B515 /* bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08701BB7517900E1B515 /* bass.caf */; settings = {ASSET_TAGS = (); }; };
-		C49A087B1BB7517900E1B515 /* drums.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08711BB7517900E1B515 /* drums.caf */; settings = {ASSET_TAGS = (); }; };
-		C49A087C1BB7517900E1B515 /* guitar.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08721BB7517900E1B515 /* guitar.caf */; settings = {ASSET_TAGS = (); }; };
-		C49A087D1BB7517900E1B515 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08731BB7517900E1B515 /* MainViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		C49A087E1BB7517900E1B515 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08741BB7517900E1B515 /* PlayerController.swift */; settings = {ASSET_TAGS = (); }; };
-		C49A087F1BB7517900E1B515 /* ControlKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08761BB7517900E1B515 /* ControlKnob.swift */; settings = {ASSET_TAGS = (); }; };
-		C49A08801BB7517900E1B515 /* IndicatorLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08771BB7517900E1B515 /* IndicatorLight.swift */; settings = {ASSET_TAGS = (); }; };
-		C49A08811BB7517900E1B515 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08781BB7517900E1B515 /* PlayButton.swift */; settings = {ASSET_TAGS = (); }; };
-		C49A08821BB7517900E1B515 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08791BB7517900E1B515 /* UIColorExtensions.swift */; settings = {ASSET_TAGS = (); }; };
+		C49A087A1BB7517900E1B515 /* bass.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08701BB7517900E1B515 /* bass.caf */; };
+		C49A087B1BB7517900E1B515 /* drums.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08711BB7517900E1B515 /* drums.caf */; };
+		C49A087C1BB7517900E1B515 /* guitar.caf in Resources */ = {isa = PBXBuildFile; fileRef = C49A08721BB7517900E1B515 /* guitar.caf */; };
+		C49A087D1BB7517900E1B515 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08731BB7517900E1B515 /* MainViewController.swift */; };
+		C49A087E1BB7517900E1B515 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08741BB7517900E1B515 /* PlayerController.swift */; };
+		C49A087F1BB7517900E1B515 /* ControlKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08761BB7517900E1B515 /* ControlKnob.swift */; };
+		C49A08801BB7517900E1B515 /* IndicatorLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08771BB7517900E1B515 /* IndicatorLight.swift */; };
+		C49A08811BB7517900E1B515 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08781BB7517900E1B515 /* PlayButton.swift */; };
+		C49A08821BB7517900E1B515 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A08791BB7517900E1B515 /* UIColorExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,11 +135,12 @@
 		C47DB4441BB750D7001D0166 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "TapHarmonic, LLC";
 				TargetAttributes = {
 					C47DB44B1BB750D7001D0166 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -295,6 +296,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.AudioLooper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -307,6 +309,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tapharmonic.AudioLooper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
