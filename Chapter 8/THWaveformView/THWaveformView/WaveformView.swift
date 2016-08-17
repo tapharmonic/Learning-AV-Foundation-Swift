@@ -44,7 +44,7 @@ class WaveformView: UIView {
         }
     }
 
-    var waveColor = UIColor.white() {
+    var waveColor = UIColor.white {
         didSet {
             layer.borderWidth = 2.0
             layer.borderColor = waveColor.cgColor
@@ -66,7 +66,7 @@ class WaveformView: UIView {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clear()
+        backgroundColor = UIColor.clear
         layer.cornerRadius = 2.0
         layer.masksToBounds = true
 
@@ -83,29 +83,29 @@ class WaveformView: UIView {
             return
         }
 
-        context.scale(x: widthScaling, y: heightScaling)
+        context.scaleBy(x: widthScaling, y: heightScaling)
 
         let xOffset = bounds.size.width - (bounds.size.width * widthScaling)
         let yOffset = bounds.size.height - (bounds.size.height * heightScaling)
-        context.translate(x: xOffset / 2, y: yOffset / 2);
+        context.translateBy(x: xOffset / 2, y: yOffset / 2);
 
         let halfPath = CGMutablePath()
-        halfPath.moveTo(nil, x: 0.0, y: rect.midY)
+        halfPath.move(to: CGPoint(x: 0.0, y: rect.midY))
 
         for i in 0..<filteredSamples.count {
             let sample = CGFloat(filteredSamples[i])
-            halfPath.addLineTo(nil, x: CGFloat(i), y: rect.midY - sample)
+            halfPath.addLine(to: CGPoint(x: CGFloat(i), y: rect.midY - sample))
         }
 
-        halfPath.addLineTo(nil, x: CGFloat(filteredSamples.count), y: rect.midY)
+        halfPath.addLine(to: CGPoint(x: CGFloat(filteredSamples.count), y: rect.midY))
 
         let fullPath = CGMutablePath()
-        fullPath.addPath(nil, path: halfPath)
+        fullPath.addPath(halfPath)
 
         var transform = CGAffineTransform.identity;
-        transform = transform.translateBy(x: 0, y: rect.height)
-        transform = transform.scaleBy(x: 1.0, y: -1.0)
-        fullPath.addPath(&transform, path: halfPath)
+        transform = transform.translatedBy(x: 0, y: rect.height)
+        transform = transform.scaledBy(x: 1.0, y: -1.0)
+        fullPath.addPath(halfPath, transform: transform)
 
         context.addPath(fullPath)
         context.setFillColor(waveColor.cgColor)

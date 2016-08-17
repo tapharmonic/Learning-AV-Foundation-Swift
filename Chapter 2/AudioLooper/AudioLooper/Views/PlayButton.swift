@@ -39,8 +39,8 @@ class PlayButton: UIButton {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clear()
-        tintColor = UIColor.clear()
+        backgroundColor = UIColor.clear
+        tintColor = UIColor.clear
     }
 
     override func prepareForInterfaceBuilder() {
@@ -71,7 +71,7 @@ class PlayButton: UIButton {
 
         let gradientColors = [gradientLightColor.cgColor, gradientDarkColor.cgColor]
         let locations = [CGFloat(0.0), CGFloat(1.0)]
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors, locations: locations)
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors as CFArray, locations: locations)
 
         var insetRect = rect.insetBy(dx: 2.0, dy: 2.0)
 
@@ -79,7 +79,7 @@ class PlayButton: UIButton {
         context.setFillColor(strokeColor.cgColor);
         let bezelPath = UIBezierPath(roundedRect: insetRect, cornerRadius: 6.0)
         context.addPath(bezelPath.cgPath);
-        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray().cgColor);
+        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray.cgColor);
         context.drawPath(using: .fill);
 
         context.saveGState();
@@ -108,10 +108,10 @@ class PlayButton: UIButton {
         // Draw Play Button
         if (!self.isSelected) {
             context.saveGState();
-            context.translate(x: rect.midX - (iconDim - 3) / 2, y: rect.midY - iconDim / 2);
-            context.moveTo(x: 0.0, y: 0.0);
-            context.addLineTo(x: 0.0, y: iconDim);
-            context.addLineTo(x: iconDim, y: iconDim / 2);
+            context.translateBy(x: rect.midX - (iconDim - 3) / 2, y: rect.midY - iconDim / 2);
+            context.move(to: .zero)
+            context.addLine(to: CGPoint(x: 0.0, y: iconDim))
+            context.addLine(to: CGPoint(x: iconDim, y: iconDim / 2))
             context.closePath();
             context.drawPath(using: .fill);
             context.restoreGState();
@@ -121,7 +121,7 @@ class PlayButton: UIButton {
             context.saveGState();
             let tx = (rect.width - iconDim) / 2;
             let ty = (rect.height - iconDim) / 2;
-            context.translate(x: tx, y: ty);
+            context.translateBy(x: tx, y: ty);
             let stopRect = CGRect(x: 0.0, y: 0.0, width: iconDim, height: iconDim);
             let stopPath = UIBezierPath(roundedRect: stopRect, cornerRadius: 2.0)
             context.addPath(stopPath.cgPath);

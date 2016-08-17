@@ -38,12 +38,12 @@ class SampleDataFilter {
 
         var filteredSamples = [Float]()
 
-        let sampleCount = sampleData.count / sizeof(Int16.self)
+        let sampleCount = sampleData.count / MemoryLayout<Int16>.size
         let binSize = Int(sampleCount / Int(size.width))
 
         var bytes = [Int16](repeating: 0, count: sampleData.count)
 
-        (sampleData as NSData).getBytes(&bytes, length:sampleData.count * sizeof(Int16.self))
+        (sampleData as NSData).getBytes(&bytes, length:sampleData.count * MemoryLayout<Int16>.size)
 
         var maxSample: Int16 = 0
 

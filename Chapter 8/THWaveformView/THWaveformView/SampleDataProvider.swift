@@ -62,7 +62,7 @@ class SampleDataProvider {
             return nil
         }
 
-        let outputSettings: [String: AnyObject] = [
+        let outputSettings: [String: Any] = [
             AVFormatIDKey: Int(kAudioFormatLinearPCM),
             AVLinearPCMIsBigEndianKey: false,
             AVLinearPCMIsFloatKey: false,
@@ -79,7 +79,7 @@ class SampleDataProvider {
             if let sampleBuffer = trackOutput.copyNextSampleBuffer() {
                 if let blockBufferRef = CMSampleBufferGetDataBuffer(sampleBuffer) {
                     let length = CMBlockBufferGetDataLength(blockBufferRef)
-                    let sampleBytes = UnsafeMutablePointer<Int16>(allocatingCapacity: length)
+                    let sampleBytes = UnsafeMutablePointer<Int16>.allocate(capacity: length)
                     CMBlockBufferCopyDataBytes(blockBufferRef, 0, length, sampleBytes)
                     sampleData.append(sampleBytes, length: length)
                 }

@@ -34,8 +34,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let keysURL = Bundle.main.urlForResource("keys", withExtension: "mp3")!
-        let beatURL = Bundle.main.urlForResource("beat", withExtension: "aiff")!
+        let keysURL = Bundle.main.url(forResource: "keys", withExtension: "mp3")!
+        let beatURL = Bundle.main.url(forResource: "beat", withExtension: "aiff")!
 
         keysWaveformView.waveColor = UIColor.blueWave()
         keysWaveformView.backgroundColor = UIColor.blueBackground()

@@ -27,7 +27,7 @@ import UIKit
 
 class IndicatorLight: UIView {
 
-    var lightColor = UIColor.white() {
+    var lightColor = UIColor.white {
         didSet {
             setNeedsDisplay()
         }
@@ -44,7 +44,7 @@ class IndicatorLight: UIView {
     }
 
     func setupView() {
-        backgroundColor = UIColor.clear()
+        backgroundColor = UIColor.clear
         isUserInteractionEnabled = false
     }
 
@@ -67,7 +67,7 @@ class IndicatorLight: UIView {
 
         context?.setShadow(offset: shadowOffset, blur: blurRadius, color: shadowColor.cgColor)
 
-        context?.addEllipse(inRect: indicatorRect)
+        context?.addEllipse(in: indicatorRect)
         context?.drawPath(using: .fillStroke)
     }
 }

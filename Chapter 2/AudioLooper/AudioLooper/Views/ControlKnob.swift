@@ -67,7 +67,7 @@ class ControlKnob: UIControl {
     }
 
     func setupView() {
-        self.backgroundColor = UIColor.clear()
+        self.backgroundColor = UIColor.clear
 
         indicatorView = IndicatorLight(frame: bounds)
         indicatorView.lightColor = indicatorLightColor()
@@ -77,7 +77,7 @@ class ControlKnob: UIControl {
     }
 
     func indicatorLightColor() -> UIColor {
-        return UIColor.white()
+        return UIColor.white
     }
 
     func clampAngle(_ angle: Double) -> Double {
@@ -175,7 +175,7 @@ class ControlKnob: UIControl {
 
         let gradientColors = [gradientLightColor.cgColor, gradientDarkColor.cgColor]
         let locations = [CGFloat(0.0), CGFloat(1.0)]
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors, locations: locations)
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: gradientColors as CFArray, locations: locations)
 
         let insetRect = rect.insetBy(dx: 0.5, dy: 0.5)
 
@@ -186,13 +186,12 @@ class ControlKnob: UIControl {
         let midX = insetRect.midX
         let midY = insetRect.midY
 
-        // Draw Bezel Light Shadow Layer
-        context.addArc(centerX: midX, y: midY, radius: insetRect.width / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: 1)
-        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray().cgColor)
+        context.addArc(center: CGPoint(x: midX, y: midY), radius: insetRect.width / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray.cgColor)
         context.fillPath()
 
         // Add Clipping Region for Knob Background
-        context.addArc(centerX: midX, y: midY, radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: 1)
+        context.addArc(center: CGPoint(x: midX, y: midY), radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
         context.clip()
 
         let startPoint = CGPoint(x: midX, y: insetRect.maxY)

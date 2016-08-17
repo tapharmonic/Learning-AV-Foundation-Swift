@@ -56,7 +56,7 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
     }
 
     func playerForFile(_ name: String) -> AVAudioPlayer {
-        let fileURL = Bundle.main.urlForResource(name, withExtension: "caf")!
+        let fileURL = Bundle.main.url(forResource: name, withExtension: "caf")!
         do {
             let player = try AVAudioPlayer(contentsOf: fileURL)
             player.numberOfLoops = -1
