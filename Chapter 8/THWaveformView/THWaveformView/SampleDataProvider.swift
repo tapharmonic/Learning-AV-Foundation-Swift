@@ -30,7 +30,7 @@ class SampleDataProvider {
 
     typealias SampleDataCompletionHandler = ((Data?) -> Void)
 
-    static func loadAudioSamples(in asset: AVAsset, completionHandler: SampleDataCompletionHandler) {
+    static func loadAudioSamples(in asset: AVAsset, completionHandler: @escaping SampleDataCompletionHandler) {
 
         let tracks = "tracks"
 
