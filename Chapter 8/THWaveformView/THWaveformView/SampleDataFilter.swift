@@ -41,18 +41,22 @@ class SampleDataFilter {
         let sampleCount = sampleData.count / MemoryLayout<Int16>.size
         let binSize = Int(sampleCount / Int(size.width))
 
-        var bytes = [Int16](repeating: 0, count: sampleData.count)
-
-        (sampleData as NSData).getBytes(&bytes, length:sampleData.count * MemoryLayout<Int16>.size)
+        let bytes = sampleData.copyBytes(as: Int16.self)
 
         var maxSample: Int16 = 0
 
         for i in stride(from: 0, to: sampleCount - 1, by: binSize) {
             var sampleBin = [Int16](repeating: 0, count: binSize)
             for j in 0..<binSize {
-                sampleBin[j] = bytes[i + j].littleEndian
-            }
-            let value = maxValue(in: sampleBin, ofSize: binSize)
+                let index = i + j
+                if index < bytes.count {
+                    let byte = bytes[index]
+                    sampleBin[j] = byte.littleEndian
+                }
+                else {
+                    sampleBin[j] = 0
+                }            }
+            let value = maxValue(in: sampleBin)
             filteredSamples.append(Float(value))
             if value > maxSample {
                 maxSample = value
@@ -67,9 +71,9 @@ class SampleDataFilter {
         return filteredSamples
     }
 
-    func maxValue(in values: [Int16], ofSize size: Int) -> Int16 {
+    func maxValue(in values: [Int16]) -> Int16 {
         var maxValue: Int16 = 0
-        for i in 0..<size {
+        for i in 0..<values.count {
             if abs(values[i]) > maxValue {
                 maxValue = abs(values[i])
             }
@@ -78,3 +82,10 @@ class SampleDataFilter {
     }
 }
 
+extension Data {
+    func copyBytes<T>(as _: T.Type) -> [T] {
+        return withUnsafeBytes { (bytes: UnsafePointer<T>) in
+            Array(UnsafeBufferPointer(start: bytes, count: count / MemoryLayout<T>.stride))
+        }
+    }
+}
