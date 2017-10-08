@@ -112,32 +112,38 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
     }
 
     func handleInterruption(_ notification: Notification) {
-        if let info = (notification as NSNotification).userInfo {
-            let type = info[AVAudioSessionInterruptionTypeKey] as! AVAudioSessionInterruptionType
-            if type == .began {
-                stop()
-                delegate?.playbackStopped()
-            } else {
-                let options = info[AVAudioSessionInterruptionOptionKey] as! AVAudioSessionInterruptionOptions
-                if options == .shouldResume {
-                    play()
-                    delegate?.playbackBegan()
-                }
+        guard let info = notification.userInfo,
+            let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSessionInterruptionType(rawValue: typeValue) else {
+                return
+        }
+        if type == .began {
+            stop()
+            delegate?.playbackStopped()
+        }
+        else if type == .ended {
+            guard let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt else {
+                return
+            }
+            let options = AVAudioSessionInterruptionOptions(rawValue: optionsValue)
+            if options.contains(.shouldResume) {
+                play()
+                delegate?.playbackBegan()
             }
         }
     }
 
     func handleRouteChange(_ notification: Notification) {
-        if let info = (notification as NSNotification).userInfo {
-
-            let reason = info[AVAudioSessionRouteChangeReasonKey] as! AVAudioSessionRouteChangeReason
-            if reason == .oldDeviceUnavailable {
-                let previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
-                let previousOutput = previousRoute.outputs.first!
-                if previousOutput.portType == AVAudioSessionPortHeadphones {
-                    stop()
-                    delegate?.playbackStopped()
-                }
+        guard let info = notification.userInfo,
+            let reason = info[AVAudioSessionRouteChangeReasonKey] as? AVAudioSessionRouteChangeReason else {
+                return
+        }
+        if reason == .oldDeviceUnavailable {
+            let previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
+            let previousOutput = previousRoute.outputs.first!
+            if previousOutput.portType == AVAudioSessionPortHeadphones {
+                stop()
+                delegate?.playbackStopped()
             }
         }
     }
