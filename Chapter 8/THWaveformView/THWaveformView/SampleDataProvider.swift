@@ -57,7 +57,7 @@ class SampleDataProvider {
             return nil
         }
 
-        guard let track = asset.tracks(withMediaType: AVMediaTypeAudio).first else {
+        guard let track = asset.tracks(withMediaType: AVMediaType.audio).first else {
             print("No audio track found in asset")
             return nil
         }
