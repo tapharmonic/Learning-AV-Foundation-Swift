@@ -186,12 +186,12 @@ class ControlKnob: UIControl {
         let midX = insetRect.midX
         let midY = insetRect.midY
 
-        context.addArc(center: CGPoint(x: midX, y: midY), radius: insetRect.width / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        context.addArc(center: CGPoint(x: midX, y: midY), radius: insetRect.width / 2, startAngle: 0, endAngle: .pi * 2, clockwise: true)
         context.setShadow(offset: CGSize(width: 0.0, height: 0.5), blur: 2.0, color: UIColor.darkGray.cgColor)
         context.fillPath()
 
         // Add Clipping Region for Knob Background
-        context.addArc(center: CGPoint(x: midX, y: midY), radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle: CGFloat(M_PI * 2), clockwise: true)
+        context.addArc(center: CGPoint(x: midX, y: midY), radius: (insetRect.width - 6) / 2, startAngle: 0, endAngle:  .pi * 2, clockwise: true)
         context.clip()
 
         let startPoint = CGPoint(x: midX, y: insetRect.maxY)
@@ -209,9 +209,9 @@ class ControlKnob: UIControl {
             let animation = CAKeyframeAnimation(keyPath: "transform.rotation.z")
             animation.duration = 0.2
             animation.values = [
-                oldAngle * M_PI / 180.0,
-                (newAngle + oldAngle) / 2.0 * M_PI / 180.0,
-                newAngle * M_PI / 180.0
+                oldAngle * .pi / 180.0,
+                (newAngle + oldAngle) / 2.0 * .pi / 180.0,
+                newAngle * .pi / 180.0
             ]
             animation.keyTimes = [0.0, 0.5, 1.0]
             animation.timingFunctions = [
@@ -221,7 +221,7 @@ class ControlKnob: UIControl {
             indicatorView.layer.add(animation, forKey: nil)
         }
 
-        indicatorView.transform = CGAffineTransform(rotationAngle: CGFloat(newAngle * M_PI / 180.0))
+        indicatorView.transform = CGAffineTransform(rotationAngle: CGFloat(newAngle * .pi / 180.0))
     }
 }
 

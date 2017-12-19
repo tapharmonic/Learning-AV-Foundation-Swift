@@ -49,8 +49,8 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
 
         let nc = NotificationCenter.default
 
-        nc.addObserver(self, selector: #selector(handleInterruption), name: NSNotification.Name.AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
-        nc.addObserver(self, selector: #selector(handleRouteChange), name: NSNotification.Name.AVAudioSessionRouteChange, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleInterruption(_:)), name: .AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleRouteChange(_:)), name: .AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
 
         players = [guitarPlayer, bassPlayer, drumsPlayer]
     }
@@ -111,7 +111,7 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
         return index >= 0 && index < players.count
     }
 
-    func handleInterruption(_ notification: Notification) {
+    @objc func handleInterruption(_ notification: Notification) {
         if let info = (notification as NSNotification).userInfo {
             let type = info[AVAudioSessionInterruptionTypeKey] as! AVAudioSessionInterruptionType
             if type == .began {
@@ -127,7 +127,7 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
         }
     }
 
-    func handleRouteChange(_ notification: Notification) {
+    @objc func handleRouteChange(_ notification: Notification) {
         if let info = (notification as NSNotification).userInfo {
 
             let reason = info[AVAudioSessionRouteChangeReasonKey] as! AVAudioSessionRouteChangeReason
