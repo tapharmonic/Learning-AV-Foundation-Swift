@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2018 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2018 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,12 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         let session = AVAudioSession.sharedInstance()
 
         do {
-            try session.setCategory(AVAudioSessionCategoryPlayback)
+            try session.setCategory(.playback, mode: .default, options: [])
             try session.setActive(true)
         } catch let error as NSError {
             print("AVAudioSession configuration error: \(error.localizedDescription)")
@@ -47,4 +47,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

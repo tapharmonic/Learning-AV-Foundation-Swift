@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2018 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2018 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -49,8 +49,8 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
 
         let nc = NotificationCenter.default
 
-        nc.addObserver(self, selector: #selector(handleInterruption(_:)), name: .AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
-        nc.addObserver(self, selector: #selector(handleRouteChange(_:)), name: .AVAudioSessionInterruption, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleInterruption(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+        nc.addObserver(self, selector: #selector(handleRouteChange(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
 
         players = [guitarPlayer, bassPlayer, drumsPlayer]
     }
@@ -113,12 +113,12 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
 
     @objc func handleInterruption(_ notification: Notification) {
         if let info = (notification as NSNotification).userInfo {
-            let type = info[AVAudioSessionInterruptionTypeKey] as! AVAudioSessionInterruptionType
+            let type = info[AVAudioSessionInterruptionTypeKey] as! AVAudioSession.InterruptionType
             if type == .began {
                 stop()
                 delegate?.playbackStopped()
             } else {
-                let options = info[AVAudioSessionInterruptionOptionKey] as! AVAudioSessionInterruptionOptions
+                let options = info[AVAudioSessionInterruptionOptionKey] as! AVAudioSession.InterruptionOptions
                 if options == .shouldResume {
                     play()
                     delegate?.playbackBegan()
@@ -130,15 +130,20 @@ class PlayerController: NSObject, AVAudioPlayerDelegate {
     @objc func handleRouteChange(_ notification: Notification) {
         if let info = (notification as NSNotification).userInfo {
 
-            let reason = info[AVAudioSessionRouteChangeReasonKey] as! AVAudioSessionRouteChangeReason
+            let reason = info[AVAudioSessionRouteChangeReasonKey] as! AVAudioSession.RouteChangeReason
             if reason == .oldDeviceUnavailable {
                 let previousRoute = info[AVAudioSessionRouteChangePreviousRouteKey] as! AVAudioSessionRouteDescription
                 let previousOutput = previousRoute.outputs.first!
-                if previousOutput.portType == AVAudioSessionPortHeadphones {
+                if convertFromAVAudioSessionPort(previousOutput.portType) == convertFromAVAudioSessionPort(AVAudioSession.Port.headphones) {
                     stop()
                     delegate?.playbackStopped()
                 }
             }
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionPort(_ input: AVAudioSession.Port) -> String {
+	return input.rawValue
 }

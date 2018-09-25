@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2018 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2018 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -215,8 +215,8 @@ class ControlKnob: UIControl {
             ]
             animation.keyTimes = [0.0, 0.5, 1.0]
             animation.timingFunctions = [
-                CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn),
-                CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+                CAMediaTimingFunction(name: .easeIn),
+                CAMediaTimingFunction(name: .easeOut)
             ]
             indicatorView.layer.add(animation, forKey: nil)
         }

@@ -1,8 +1,8 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2016 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2016 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2018 Bob McCune http://bobmccune.com/
+//  Copyright (c) 2018 TapHarmonic, LLC http://tapharmonic.com/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -80,7 +80,7 @@ class SampleDataProvider {
                 if let blockBufferRef = CMSampleBufferGetDataBuffer(sampleBuffer) {
                     let length = CMBlockBufferGetDataLength(blockBufferRef)
                     let sampleBytes = UnsafeMutablePointer<Int16>.allocate(capacity: length)
-                    CMBlockBufferCopyDataBytes(blockBufferRef, 0, length, sampleBytes)
+                    CMBlockBufferCopyDataBytes(blockBufferRef, atOffset: 0, dataLength: length, destination: sampleBytes)
                     sampleData.append(sampleBytes, length: length)
                 }
             }
