@@ -71,7 +71,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 
         let keys: [String] = ["commonMetadata", "availableChapterLocales"]       // 3
 
-		self.playerItem = AVPlayerItem.init(asset: asset,          // 4
+		self.playerItem = AVPlayerItem(asset: asset,          // 4
                                automaticallyLoadedAssetKeys: keys)
 		guard let playerItem = self.playerItem else {
 			return
@@ -81,7 +81,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
                           forKeyPath:STATUS_KEY,
 						  options:[], context:nil)
 
-        playerView.player = AVPlayer.init(playerItem: self.playerItem)
+        playerView.player = AVPlayer(playerItem: self.playerItem)
         playerView.showsSharingServiceButton = true
     }
 
@@ -138,7 +138,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
             let number: UInt = i + 1
 			let title = self.titleInMetadata(metadata: group.items) ?? "untitled chapter"
 
-			let chapter = Chapter.init(time: time, number: number, title: title)
+			let chapter = Chapter(time: time, number: number, title: title)
 
             chapters.append(chapter)
 			i += 1
