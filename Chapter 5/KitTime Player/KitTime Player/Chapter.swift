@@ -3,6 +3,7 @@
 //
 //  Copyright (c) 2014 Bob McCune http://bobmccune.com/
 //  Copyright (c) 2014 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2020 Jan Weiß http://geheimwerk.de/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +24,33 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
+import Foundation
+import AVFoundation
 
+class Chapter {
 
-NS_ASSUME_NONNULL_BEGIN
+    private(set) public var time: CMTime
+    private(set) public var number: UInt
+    private(set) public var title: String
 
-@interface THChapter : NSObject
+	init(time:CMTime, number:UInt, title:String) {
+		self.time = time
+		self.number = number
+		self.title = title
+	}
+	
+	func isIn(_ timeRange: CMTimeRange) -> Bool {
+		return (time > timeRange.start) &&
+			(time < timeRange.duration)
+	}
 
-+ (instancetype)chapterWithTime:(CMTime)time
-                         number:(NSUInteger)number
-                          title:(NSString *)title;
+    func hasValidTime() -> Bool {
+        return time.isValid
+    }
 
-@property (readonly) CMTime time;
-@property (readonly) NSUInteger number;
-@property (readonly, copy) NSString *title;
-
-- (BOOL)isInTimeRange:(CMTimeRange)range;
-- (BOOL)hasValidTime;
-
-@end
-
-NS_ASSUME_NONNULL_END
+    func debugDescription() -> String! {
+        let format = "time:%@ number:%lu title:%@"
+		let strTime = CMTimeCopyDescription(allocator: nil, time: time)! as String
+        return String(format: format, strTime, number, title)
+    }
+}

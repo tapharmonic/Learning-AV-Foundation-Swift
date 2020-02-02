@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
-		C439A79F18014789001F667B /* THChapter.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A79E18014789001F667B /* THChapter.m */; };
+		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
 		C439A7A51801617D001F667B /* THExportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A31801617D001F667B /* THExportWindowController.m */; };
 		C439A7A61801617D001F667B /* THExportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C439A7A41801617D001F667B /* THExportWindow.xib */; };
@@ -32,8 +32,7 @@
 /* Begin PBXFileReference section */
 		3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		C439A79D18014789001F667B /* THChapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THChapter.h; sourceTree = "<group>"; };
-		C439A79E18014789001F667B /* THChapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THChapter.m; sourceTree = "<group>"; };
+		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C439A7A21801617D001F667B /* THExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THExportWindowController.h; sourceTree = "<group>"; };
 		C439A7A31801617D001F667B /* THExportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THExportWindowController.m; sourceTree = "<group>"; };
@@ -185,8 +184,7 @@
 		C4A74576180230FB00D23083 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C439A79D18014789001F667B /* THChapter.h */,
-				C439A79E18014789001F667B /* THChapter.m */,
+				3DFCD3C223E71E0500BC047D /* Chapter.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -267,11 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
+				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
 				C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */,
 				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
 				C439A7BB18017546001F667B /* THLoadingView.m in Sources */,
 				C439A7BA18017546001F667B /* NSBezierPath+Geometry.m in Sources */,
-				C439A79F18014789001F667B /* THChapter.m in Sources */,
 				C439A7B2180174FE001F667B /* THWindow.m in Sources */,
 				C439A7A51801617D001F667B /* THExportWindowController.m in Sources */,
 				C439A7B918017546001F667B /* ITProgressIndicator.m in Sources */,

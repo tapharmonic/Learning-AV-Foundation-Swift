@@ -36,7 +36,7 @@ let STATUS_KEY = "status"
 class Document: NSDocument, THExportWindowControllerDelegate {
 	var asset: AVAsset? = nil
 	var playerItem: AVPlayerItem? = nil
-	var chapters: [THChapter] = []
+	var chapters: [Chapter] = []
 	var exportSession: AVAssetExportSession? = nil
 	var exportController: THExportWindowController? = nil
 
@@ -123,13 +123,13 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 		}
     }
 
-    func chaptersForAsset(asset: AVAsset) -> [THChapter] {
+    func chaptersForAsset(asset: AVAsset) -> [Chapter] {
 
         let languages = NSLocale.preferredLanguages                     // 1
 
 		let metadataGroups = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: languages)
 
-		var chapters: [THChapter] = []
+		var chapters: [Chapter] = []
 		
 		var i: UInt = 0
 
@@ -138,7 +138,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
             let number: UInt = i + 1
 			let title = self.titleInMetadata(metadata: group.items) ?? "untitled chapter"
 
-			let chapter = THChapter.init(time: time, number: number, title: title)
+			let chapter = Chapter.init(time: time, number: number, title: title)
 
             chapters.append(chapter)
 			i += 1
@@ -173,7 +173,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 		self.skipToChapter(chapter: self.findNextChapter())                            // 2
     }
 
-    func skipToChapter(chapter: THChapter?) {                                // 3
+    func skipToChapter(chapter: Chapter?) {                                // 3
 		guard let playerItem = self.playerItem, let chapter = chapter else {
 			return
 		}
@@ -184,7 +184,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 		}
     }
 
-    func findPreviousChapter() -> THChapter? {
+    func findPreviousChapter() -> Chapter? {
 		guard let playerItem = self.playerItem else {
 			return nil
 		}
@@ -199,7 +199,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 		return self.findChapter(timeRange: timeRange, reverse: true)             // 3
     }
 
-    func findNextChapter() -> THChapter? {
+    func findNextChapter() -> Chapter? {
 		guard let playerItem = self.playerItem else {
 			return nil
 		}
@@ -212,11 +212,11 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 		return self.findChapter(timeRange: timeRange, reverse: false)              // 6
     }
 	
-    func findChapter(timeRange: CMTimeRange, reverse: Bool) -> THChapter? {
-        var matchingChapter: THChapter? = nil
+    func findChapter(timeRange: CMTimeRange, reverse: Bool) -> Chapter? {
+        var matchingChapter: Chapter? = nil
 		
 		for chapter in self.chapters.reversed() {
-			if chapter.is(in: timeRange) {                   // 8
+			if chapter.isIn(timeRange) {                   // 8
                 matchingChapter = chapter
                 break
             }
