@@ -270,7 +270,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					return
 				}
 				
-				//print("\(exportSession.supportedFileTypes.firstObject)")
+				let supportedFileType = exportSession.supportedFileTypes.first
+				Swift.print(supportedFileType ?? "<nil>")
 
 				guard let playerItem = self.playerItem else {
 					return
