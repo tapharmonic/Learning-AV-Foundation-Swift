@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
-		3D55116823E7257700321FF8 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D55116723E7257700321FF8 /* Window.swift */; };
 		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
 		C439A7A51801617D001F667B /* THExportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A31801617D001F667B /* THExportWindowController.m */; };
@@ -28,7 +27,6 @@
 /* Begin PBXFileReference section */
 		3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		3D55116723E7257700321FF8 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C439A7A21801617D001F667B /* THExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THExportWindowController.h; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				C439A7A31801617D001F667B /* THExportWindowController.m */,
 				C43BDA8C18010C6600AD0F16 /* MainMenu.xib */,
 				C4A74576180230FB00D23083 /* Models */,
-				C4A745751802308B00D23083 /* Views */,
 				C43BDA7B18010C6600AD0F16 /* Supporting Files */,
 				C43BDA8F18010C6600AD0F16 /* Images.xcassets */,
 			);
@@ -141,14 +138,6 @@
 				C43BDA8318010C6600AD0F16 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C4A745751802308B00D23083 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3D55116723E7257700321FF8 /* Window.swift */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		C4A74576180230FB00D23083 /* Models */ = {
@@ -235,7 +224,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
-				3D55116823E7257700321FF8 /* Window.swift in Sources */,
 				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
 				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
 				C439A7A51801617D001F667B /* THExportWindowController.m in Sources */,
