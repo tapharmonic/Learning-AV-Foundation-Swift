@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
 		3D55116823E7257700321FF8 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D55116723E7257700321FF8 /* Window.swift */; };
+		3D55116A23E728D300321FF8 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D55116923E728D300321FF8 /* LoadingView.swift */; };
 		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
 		C439A7A51801617D001F667B /* THExportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A31801617D001F667B /* THExportWindowController.m */; };
@@ -16,7 +17,6 @@
 		C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A81801653E001F667B /* NSTimer+Additions.m */; };
 		C439A7B918017546001F667B /* ITProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B418017546001F667B /* ITProgressIndicator.m */; };
 		C439A7BA18017546001F667B /* NSBezierPath+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B618017546001F667B /* NSBezierPath+Geometry.m */; };
-		C439A7BB18017546001F667B /* THLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B818017546001F667B /* THLoadingView.m */; };
 		C439A7BD1801755A001F667B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7BC1801755A001F667B /* QuartzCore.framework */; };
 		C43BDA7518010C6600AD0F16 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDA7418010C6600AD0F16 /* Cocoa.framework */; };
 		C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */; };
@@ -33,6 +33,7 @@
 		3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		3D55116723E7257700321FF8 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		3D55116923E728D300321FF8 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C439A7A21801617D001F667B /* THExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THExportWindowController.h; sourceTree = "<group>"; };
@@ -45,8 +46,6 @@
 		C439A7B418017546001F667B /* ITProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITProgressIndicator.m; sourceTree = "<group>"; };
 		C439A7B518017546001F667B /* NSBezierPath+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+Geometry.h"; sourceTree = "<group>"; };
 		C439A7B618017546001F667B /* NSBezierPath+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+Geometry.m"; sourceTree = "<group>"; };
-		C439A7B718017546001F667B /* THLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THLoadingView.h; sourceTree = "<group>"; };
-		C439A7B818017546001F667B /* THLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLoadingView.m; sourceTree = "<group>"; };
 		C439A7BC1801755A001F667B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C43BDA7118010C6600AD0F16 /* KitTime Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitTime Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C43BDA7418010C6600AD0F16 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -172,9 +171,8 @@
 				C439A7B418017546001F667B /* ITProgressIndicator.m */,
 				C439A7B518017546001F667B /* NSBezierPath+Geometry.h */,
 				C439A7B618017546001F667B /* NSBezierPath+Geometry.m */,
-				C439A7B718017546001F667B /* THLoadingView.h */,
-				C439A7B818017546001F667B /* THLoadingView.m */,
 				3D55116723E7257700321FF8 /* Window.swift */,
+				3D55116923E728D300321FF8 /* LoadingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -265,9 +263,9 @@
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
 				3D55116823E7257700321FF8 /* Window.swift in Sources */,
 				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
+				3D55116A23E728D300321FF8 /* LoadingView.swift in Sources */,
 				C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */,
 				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
-				C439A7BB18017546001F667B /* THLoadingView.m in Sources */,
 				C439A7BA18017546001F667B /* NSBezierPath+Geometry.m in Sources */,
 				C439A7A51801617D001F667B /* THExportWindowController.m in Sources */,
 				C439A7B918017546001F667B /* ITProgressIndicator.m in Sources */,
@@ -417,6 +415,7 @@
 				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
 				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KitTime Player/KitTime Player-Bridging-Header.h";
@@ -436,6 +435,7 @@
 				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
 				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "KitTime Player/KitTime Player-Bridging-Header.h";

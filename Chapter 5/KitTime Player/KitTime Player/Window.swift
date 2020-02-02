@@ -18,7 +18,7 @@ class Window: NSWindow {
 			return
 		}
 		
-		let loadingView = THLoadingView(frame: contentView.bounds)
+		let loadingView = LoadingView(frame: contentView.bounds)
 		
         subview.addSubview(loadingView)
 		self.convertingView = loadingView
