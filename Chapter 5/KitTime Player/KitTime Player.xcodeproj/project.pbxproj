@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
+		3D55116823E7257700321FF8 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D55116723E7257700321FF8 /* Window.swift */; };
 		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
 		C439A7A51801617D001F667B /* THExportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A31801617D001F667B /* THExportWindowController.m */; };
 		C439A7A61801617D001F667B /* THExportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C439A7A41801617D001F667B /* THExportWindow.xib */; };
 		C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A81801653E001F667B /* NSTimer+Additions.m */; };
-		C439A7B2180174FE001F667B /* THWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B1180174FE001F667B /* THWindow.m */; };
 		C439A7B918017546001F667B /* ITProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B418017546001F667B /* ITProgressIndicator.m */; };
 		C439A7BA18017546001F667B /* NSBezierPath+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B618017546001F667B /* NSBezierPath+Geometry.m */; };
 		C439A7BB18017546001F667B /* THLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7B818017546001F667B /* THLoadingView.m */; };
@@ -32,6 +32,7 @@
 /* Begin PBXFileReference section */
 		3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		3D55116723E7257700321FF8 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C439A7A21801617D001F667B /* THExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THExportWindowController.h; sourceTree = "<group>"; };
@@ -40,8 +41,6 @@
 		C439A7A71801653E001F667B /* NSTimer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Additions.h"; sourceTree = "<group>"; };
 		C439A7A81801653E001F667B /* NSTimer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Additions.m"; sourceTree = "<group>"; };
 		C439A7AE18017472001F667B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
-		C439A7B0180174FE001F667B /* THWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THWindow.h; sourceTree = "<group>"; };
-		C439A7B1180174FE001F667B /* THWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THWindow.m; sourceTree = "<group>"; };
 		C439A7B318017546001F667B /* ITProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITProgressIndicator.h; sourceTree = "<group>"; };
 		C439A7B418017546001F667B /* ITProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITProgressIndicator.m; sourceTree = "<group>"; };
 		C439A7B518017546001F667B /* NSBezierPath+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+Geometry.h"; sourceTree = "<group>"; };
@@ -175,8 +174,7 @@
 				C439A7B618017546001F667B /* NSBezierPath+Geometry.m */,
 				C439A7B718017546001F667B /* THLoadingView.h */,
 				C439A7B818017546001F667B /* THLoadingView.m */,
-				C439A7B0180174FE001F667B /* THWindow.h */,
-				C439A7B1180174FE001F667B /* THWindow.m */,
+				3D55116723E7257700321FF8 /* Window.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -265,12 +263,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
+				3D55116823E7257700321FF8 /* Window.swift in Sources */,
 				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
 				C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */,
 				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
 				C439A7BB18017546001F667B /* THLoadingView.m in Sources */,
 				C439A7BA18017546001F667B /* NSBezierPath+Geometry.m in Sources */,
-				C439A7B2180174FE001F667B /* THWindow.m in Sources */,
 				C439A7A51801617D001F667B /* THExportWindowController.m in Sources */,
 				C439A7B918017546001F667B /* ITProgressIndicator.m in Sources */,
 			);

@@ -23,6 +23,8 @@
 //  THE SOFTWARE.
 //
 
+#import <AppKit/AppKit.h>
+
 @interface THLoadingView : NSView
 
 @end
