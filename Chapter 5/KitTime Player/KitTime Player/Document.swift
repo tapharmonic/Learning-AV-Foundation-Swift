@@ -259,6 +259,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		savePanel.beginSheetModal(for: windowForSheet) { (result: NSApplication.ModalResponse) in
 
 			if result == NSApplication.ModalResponse.OK {
+				// TODO: Honor user’s instruction to replace the file.
+				// Otherwise we wouldn’t get here, if the file at `savePanel.url` already exists.
+				
                 // Order out save panel as the export window will be shown.
                 savePanel.orderOut(nil)
 
@@ -303,6 +306,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					completionHandler: nil)
 
 				exportSession.exportAsynchronously(completionHandler: {
+					if exportSession.status == AVAssetExportSession.Status.failed {
+						Swift.print(exportSession.error ?? "Unknown error during export.")
+					}
+					
                     // Tear down.                                               // 6
 					DispatchQueue.main.async(execute: {
 						if let exportControllerWindow = exportController.window  {
