@@ -280,13 +280,13 @@ class Document: NSDocument, ExportWindowControllerDelegate {
                 let startTime = playerItem.reversePlaybackEndTime
                 let endTime = playerItem.forwardPlaybackEndTime
 				let timeRange = CMTimeRangeMake(start: startTime, duration: endTime)    // 3
-
+				
                 // Configure the export session.                                 // 4
                 exportSession.timeRange = timeRange
                 exportSession.outputFileType =
                     exportSession.supportedFileTypes.first
 				exportSession.outputURL = savePanel.url
-
+				
                 self.exportController = ExportWindowController()
 				guard let exportController = self.exportController else {
 					return
