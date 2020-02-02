@@ -17,10 +17,9 @@ class ExportWindowController: NSWindowController {
 	
     public weak var exportSession: AVAssetExportSession? = nil {
 		didSet {
-			//weak var weakSelf = self
-			timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats:true, block:{_ in
+			timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
 				DispatchQueue.main.async(execute: {
-					self.progressIndicator?.doubleValue = Double(self.exportSession?.progress ?? 0.0)
+					self?.progressIndicator?.doubleValue = Double(self?.exportSession?.progress ?? 0.0)
 				})
 			})
         }
