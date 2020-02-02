@@ -33,12 +33,12 @@ import AVKit
 let STATUS_KEY = "status"
 
 
-class Document: NSDocument, THExportWindowControllerDelegate {
+class Document: NSDocument, ExportWindowControllerDelegate {
 	var asset: AVAsset? = nil
 	var playerItem: AVPlayerItem? = nil
 	var chapters: [Chapter] = []
 	var exportSession: AVAssetExportSession? = nil
-	var exportController: THExportWindowController? = nil
+	var exportController: ExportWindowController? = nil
 
 	@IBOutlet var playerView: AVPlayerView?;
 
@@ -286,7 +286,7 @@ class Document: NSDocument, THExportWindowControllerDelegate {
                     exportSession.supportedFileTypes.first
 				exportSession.outputURL = savePanel.url
 
-                self.exportController = THExportWindowController()
+                self.exportController = ExportWindowController()
 				guard let exportController = self.exportController else {
 					return
 				}
@@ -303,10 +303,12 @@ class Document: NSDocument, THExportWindowControllerDelegate {
 
 				exportSession.exportAsynchronously(completionHandler: {
                     // Tear down.                                               // 6
-					if let exportControllerWindow = exportController.window  {
-						windowForSheet.endSheet(exportControllerWindow)
-					}
-					
+					DispatchQueue.main.async(execute: {
+						if let exportControllerWindow = exportController.window  {
+							windowForSheet.endSheet(exportControllerWindow)
+						}
+					})
+
                     self.exportController = nil
                     self.exportSession = nil
                 })

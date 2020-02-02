@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
+		3D7F264923E73018002B92CA /* Timer+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F264823E73018002B92CA /* Timer+Additions.swift */; };
+		3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F264A23E732D8002B92CA /* ExportWindowController.swift */; };
 		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
-		C439A7A51801617D001F667B /* THExportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A31801617D001F667B /* THExportWindowController.m */; };
-		C439A7A61801617D001F667B /* THExportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C439A7A41801617D001F667B /* THExportWindow.xib */; };
-		C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C439A7A81801653E001F667B /* NSTimer+Additions.m */; };
+		C439A7A61801617D001F667B /* ExportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C439A7A41801617D001F667B /* ExportWindow.xib */; };
 		C439A7BD1801755A001F667B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7BC1801755A001F667B /* QuartzCore.framework */; };
 		C43BDA7518010C6600AD0F16 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDA7418010C6600AD0F16 /* Cocoa.framework */; };
 		C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */; };
@@ -26,15 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Bridging-Header.h"; sourceTree = "<group>"; };
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		3D7F264823E73018002B92CA /* Timer+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Additions.swift"; sourceTree = "<group>"; };
+		3D7F264A23E732D8002B92CA /* ExportWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportWindowController.swift; sourceTree = "<group>"; };
 		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		C439A7A21801617D001F667B /* THExportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THExportWindowController.h; sourceTree = "<group>"; };
-		C439A7A31801617D001F667B /* THExportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THExportWindowController.m; sourceTree = "<group>"; };
-		C439A7A41801617D001F667B /* THExportWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = THExportWindow.xib; sourceTree = "<group>"; };
-		C439A7A71801653E001F667B /* NSTimer+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Additions.h"; sourceTree = "<group>"; };
-		C439A7A81801653E001F667B /* NSTimer+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Additions.m"; sourceTree = "<group>"; };
+		C439A7A41801617D001F667B /* ExportWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportWindow.xib; sourceTree = "<group>"; };
 		C439A7AE18017472001F667B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
 		C439A7BC1801755A001F667B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C43BDA7118010C6600AD0F16 /* KitTime Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitTime Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,8 +71,7 @@
 		C439A7AD18016544001F667B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				C439A7A71801653E001F667B /* NSTimer+Additions.h */,
-				C439A7A81801653E001F667B /* NSTimer+Additions.m */,
+				3D7F264823E73018002B92CA /* Timer+Additions.swift */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -127,9 +123,8 @@
 			children = (
 				3D52AF0423E49D7800B3105B /* Document.swift */,
 				C43BDA8918010C6600AD0F16 /* Document.xib */,
-				C439A7A41801617D001F667B /* THExportWindow.xib */,
-				C439A7A21801617D001F667B /* THExportWindowController.h */,
-				C439A7A31801617D001F667B /* THExportWindowController.m */,
+				C439A7A41801617D001F667B /* ExportWindow.xib */,
+				3D7F264A23E732D8002B92CA /* ExportWindowController.swift */,
 				C43BDA8C18010C6600AD0F16 /* MainMenu.xib */,
 				C439A7AD18016544001F667B /* Categories */,
 				C4A74576180230FB00D23083 /* Models */,
@@ -145,7 +140,6 @@
 				C43BDA7C18010C6600AD0F16 /* KitTime Player-Info.plist */,
 				C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */,
 				C43BDA8018010C6600AD0F16 /* main.m */,
-				3D52AF0323E49D7800B3105B /* KitTime Player-Bridging-Header.h */,
 				C43BDA8218010C6600AD0F16 /* KitTime Player-Prefix.pch */,
 				C43BDA7318010C6600AD0F16 /* Frameworks */,
 				C43BDA8318010C6600AD0F16 /* Credits.rtf */,
@@ -221,7 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43BDA8B18010C6600AD0F16 /* Document.xib in Resources */,
-				C439A7A61801617D001F667B /* THExportWindow.xib in Resources */,
+				C439A7A61801617D001F667B /* ExportWindow.xib in Resources */,
 				C43BDA9018010C6600AD0F16 /* Images.xcassets in Resources */,
 				C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */,
 				C43BDA8518010C6600AD0F16 /* Credits.rtf in Resources */,
@@ -236,11 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D7F264923E73018002B92CA /* Timer+Additions.swift in Sources */,
+				3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */,
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
 				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
-				C439A7AB1801653E001F667B /* NSTimer+Additions.m in Sources */,
 				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
-				C439A7A51801617D001F667B /* THExportWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,7 +321,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -372,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -387,10 +381,8 @@
 				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
 				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "KitTime Player/KitTime Player-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
@@ -407,10 +399,8 @@
 				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
 				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "KitTime Player/KitTime Player-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};

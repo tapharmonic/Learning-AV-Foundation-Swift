@@ -3,6 +3,7 @@
 //
 //  Copyright (c) 2014 Bob McCune http://bobmccune.com/
 //  Copyright (c) 2014 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2020 Jan Weiß http://geheimwerk.de/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,12 +24,24 @@
 //  THE SOFTWARE.
 //
 
-typedef void(^TimerFireBlock)(void);
+import Foundation
 
-@interface NSTimer (Additions)
+typealias TimerFireBlock = () -> Void
 
-+ (id)scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval firing:(TimerFireBlock)fireBlock;
+extension Timer {
 
-+ (id)scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval repeating:(BOOL)repeat firing:(TimerFireBlock)fireBlock;
+	@objc class func executeTimerBlock(timer: Timer) {
+		if let block = timer.userInfo as? TimerFireBlock {
+			block()
+		}
+    }
 
-@end
+	class func scheduledTimerWithTimeInterval(interval: TimeInterval, firing fireBlock: @escaping TimerFireBlock) -> AnyObject {
+		return self.scheduledTimerWithTimeInterval(inTimeInterval: interval, repeating: false, firing: fireBlock)
+    }
+
+	class func scheduledTimerWithTimeInterval(inTimeInterval: TimeInterval, repeating: Bool, firing fireBlock: @escaping TimerFireBlock) -> AnyObject {
+		return self.scheduledTimer(timeInterval: inTimeInterval, target: self, selector: #selector(Timer.executeTimerBlock), userInfo: fireBlock, repeats: repeating)
+    }
+	
+}
