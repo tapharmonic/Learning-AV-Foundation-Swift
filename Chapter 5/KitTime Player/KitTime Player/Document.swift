@@ -246,6 +246,18 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 	
     // MARK: - Exporting
 
+	class func temporaryDirectory(forURL baseURL: URL) throws -> URL {
+		do {
+			return try FileManager.default.url(for: .itemReplacementDirectory,
+											   in: .userDomainMask,
+											   appropriateFor: baseURL,
+											   create: true)
+		}
+		catch {
+			throw error
+		}
+	}
+	
     @IBAction func startExporting(_ sender: AnyObject) {
 		guard let windowForSheet = self.windowForSheet,
 			let asset = self.asset else {
@@ -274,10 +286,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 				
 				let temporaryDirectoryURL: URL
 				do {
-					try temporaryDirectoryURL = FileManager.default.url(for: .itemReplacementDirectory,
-																		in: .userDomainMask,
-																		appropriateFor: finalURL,
-																		create: true)
+					try temporaryDirectoryURL = Document.temporaryDirectory(forURL: finalURL)
 				}
 				catch {
 					DispatchQueue.main.async(execute: {
@@ -286,6 +295,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 							return
 						}
 					})
+					
+					self.exportSession = nil
 					
 					return
 				}
