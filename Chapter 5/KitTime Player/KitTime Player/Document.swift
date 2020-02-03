@@ -190,11 +190,11 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		}
 		
         let playerTime = playerItem.currentTime()
-		let preroll = CMTimeMake(value: 3, timescale: 1)
-        let currentTime = CMTimeSubtract(playerTime, preroll)      // 1
+		let prerollTime = CMTimeMakeWithSeconds(3, preferredTimescale: playerTime.timescale)
+        let searchEndTime = CMTimeMaximum(CMTimeSubtract(playerTime, prerollTime), CMTime.zero)     // 1
 		let pastTime = CMTime.negativeInfinity
-
-		let timeRange = CMTimeRangeMake(start: pastTime, duration: currentTime)         // 2
+		
+		let timeRange = CMTimeRangeMake(start: pastTime, duration: searchEndTime)         // 2
 
 		return self.findChapter(timeRange: timeRange, reverse: true)             // 3
     }
@@ -204,10 +204,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			return nil
 		}
 		
-    	let currentTime = playerItem.currentTime                       // 4
+    	let currentTime = playerItem.currentTime()                       // 4
 		let futureTime = CMTime.positiveInfinity
 
-		let timeRange = CMTimeRangeMake(start: currentTime(), duration: futureTime)       // 5
+		let timeRange = CMTimeRangeFromTimeToTime(start: currentTime, end: futureTime)       // 5
 
 		return self.findChapter(timeRange: timeRange, reverse: false)              // 6
     }
