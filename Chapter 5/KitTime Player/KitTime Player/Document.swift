@@ -225,7 +225,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
         return matchingChapter                                                 // 9
     }
 	
-	// MARK: - Movie Modernization
+	// MARK: - File handling
+	
 	override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
         return
     }
