@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
+		3D57A5C023E890E200275966 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57A5BF23E890E200275966 /* AppDelegate.swift */; };
 		3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F264A23E732D8002B92CA /* ExportWindowController.swift */; };
 		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
 		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
@@ -15,7 +16,6 @@
 		C439A7BD1801755A001F667B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7BC1801755A001F667B /* QuartzCore.framework */; };
 		C43BDA7518010C6600AD0F16 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDA7418010C6600AD0F16 /* Cocoa.framework */; };
 		C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */; };
-		C43BDA8118010C6600AD0F16 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C43BDA8018010C6600AD0F16 /* main.m */; };
 		C43BDA8518010C6600AD0F16 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8318010C6600AD0F16 /* Credits.rtf */; };
 		C43BDA8B18010C6600AD0F16 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8918010C6600AD0F16 /* Document.xib */; };
 		C43BDA8E18010C6600AD0F16 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8C18010C6600AD0F16 /* MainMenu.xib */; };
@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		3D57A5BF23E890E200275966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D7F264A23E732D8002B92CA /* ExportWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportWindowController.swift; sourceTree = "<group>"; };
 		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -39,8 +40,6 @@
 		C43BDA7918010C6600AD0F16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C43BDA7C18010C6600AD0F16 /* KitTime Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KitTime Player-Info.plist"; sourceTree = "<group>"; };
 		C43BDA7E18010C6600AD0F16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C43BDA8018010C6600AD0F16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C43BDA8218010C6600AD0F16 /* KitTime Player-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KitTime Player-Prefix.pch"; sourceTree = "<group>"; };
 		C43BDA8418010C6600AD0F16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		C43BDA8A18010C6600AD0F16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
 		C43BDA8D18010C6600AD0F16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		C43BDA7A18010C6600AD0F16 /* KitTime Player */ = {
 			isa = PBXGroup;
 			children = (
+				3D57A5BF23E890E200275966 /* AppDelegate.swift */,
 				3D52AF0423E49D7800B3105B /* Document.swift */,
 				C43BDA8918010C6600AD0F16 /* Document.xib */,
 				C439A7A41801617D001F667B /* ExportWindow.xib */,
@@ -128,8 +128,6 @@
 			children = (
 				C43BDA7C18010C6600AD0F16 /* KitTime Player-Info.plist */,
 				C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */,
-				C43BDA8018010C6600AD0F16 /* main.m */,
-				C43BDA8218010C6600AD0F16 /* KitTime Player-Prefix.pch */,
 				C43BDA7318010C6600AD0F16 /* Frameworks */,
 				C43BDA8318010C6600AD0F16 /* Credits.rtf */,
 			);
@@ -219,10 +217,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D57A5C023E890E200275966 /* AppDelegate.swift in Sources */,
 				3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */,
 				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
 				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
-				C43BDA8118010C6600AD0F16 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,7 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2014 Bob McCune http://bobmccune.com/
-//  Copyright (c) 2014 TapHarmonic, LLC http://tapharmonic.com/
+//  Copyright (c) 2020 Jan Weiß http://geheimwerk.de/
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +22,18 @@
 //  THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
+import Cocoa
 
-int main(int argc, const char * argv[]) {
-    return NSApplicationMain(argc, argv);
+@NSApplicationMain
+class AppDelegate: NSObject, NSApplicationDelegate {
+	
+	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		// Insert code here to initialize your application
+	}
+	
+	func applicationWillTerminate(_ aNotification: Notification) {
+		// Insert code here to tear down your application
+	}
+	
 }
+
