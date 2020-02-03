@@ -259,9 +259,34 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		savePanel.beginSheetModal(for: windowForSheet) { (result: NSApplication.ModalResponse) in
 
 			if result == NSApplication.ModalResponse.OK {
-				// TODO: Honor user’s instruction to replace the file.
-				// Otherwise we wouldn’t get here, if the file at `savePanel.url` already exists.
+				guard let finalURL = savePanel.url else {
+					return
+				}
 				
+				// WWDX 2010, Session 407
+				// A Word on Error Handling
+				// Handle failures gracefully
+				// • AVAssetExportSession will not overwrite files
+				// • AVAssetExportSession will not write files outside of your sandbox [kinda obvious, ed.]
+				
+				let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
+				let temporaryDirectoryURL = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(globallyUniqueString)
+				do {
+					try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+				}
+				catch {
+					DispatchQueue.main.async(execute: {
+						let temporaryDirectoryErrorAlert = NSAlert(error: error)
+						temporaryDirectoryErrorAlert.beginSheetModal(for: windowForSheet) { _ in
+							return
+						}
+					})
+				}
+				
+				let finalName = finalURL.lastPathComponent
+				let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(finalName)
+				Swift.print("Temporary media export file: \(temporaryFileURL)")
+
                 // Order out save panel as the export window will be shown.
                 savePanel.orderOut(nil)
 
@@ -288,7 +313,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
                 exportSession.timeRange = timeRange
                 exportSession.outputFileType =
                     exportSession.supportedFileTypes.first
-				exportSession.outputURL = savePanel.url
+				exportSession.outputURL = temporaryFileURL
 				
                 self.exportController = ExportWindowController()
 				guard let exportController = self.exportController else {
@@ -313,6 +338,19 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 							let exportErrorAlert = NSAlert(error: error)
 							exportErrorAlert.beginSheetModal(for: windowForSheet) { _ in
 								return
+							}
+						}
+						else if exportSession.status == AVAssetExportSession.Status.completed {
+							do {
+								try _ = FileManager.default.replaceItemAt(finalURL, withItemAt: temporaryFileURL, backupItemName: nil, options: .usingNewMetadataOnly)
+							}
+							catch {
+								DispatchQueue.main.async(execute: {
+									let temporaryDirectoryErrorAlert = NSAlert(error: error)
+									temporaryDirectoryErrorAlert.beginSheetModal(for: windowForSheet) { _ in
+										return
+									}
+								})
 							}
 						}
 						
