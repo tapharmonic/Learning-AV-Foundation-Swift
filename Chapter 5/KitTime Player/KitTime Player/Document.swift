@@ -180,7 +180,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 
 		playerItem.seek(to: chapter.time) { (done: Bool) in
 			self.playerView?.flashChapterNumber(Int(chapter.number),
-                                   chapterTitle: chapter.title)
+												chapterTitle: chapter.title)
 		}
     }
 
