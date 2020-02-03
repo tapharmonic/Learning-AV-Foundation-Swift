@@ -306,12 +306,20 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					completionHandler: nil)
 
 				exportSession.exportAsynchronously(completionHandler: {
-					if exportSession.status == AVAssetExportSession.Status.failed {
-						Swift.print(exportSession.error ?? "Unknown error during export.")
-					}
-					
                     // Tear down.                                               // 6
 					DispatchQueue.main.async(execute: {
+						if exportSession.status == AVAssetExportSession.Status.failed,
+							let error = exportSession.error {
+							let exportErrorAlert = NSAlert(error: error)
+							exportErrorAlert.beginSheetModal(for: windowForSheet) { _ in
+								return
+							}
+						}
+						
+						// Doing the following last results in a less jarring visual experience.
+						// Doing this first would result in the `exportControllerWindow` retracting
+						// and, if the alert sheet above needs to be displayed,
+						// it sliding down immediatly afterwards leading to a fast yoyo-like motion.
 						if let exportControllerWindow = exportController.window  {
 							windowForSheet.endSheet(exportControllerWindow)
 						}
