@@ -263,6 +263,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					return
 				}
 				
+				// Order out save panel as the export window will be shown.
+				savePanel.orderOut(nil)
+				
 				// WWDX 2010, Session 407
 				// A Word on Error Handling
 				// Handle failures gracefully
@@ -286,9 +289,6 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 				let finalName = finalURL.lastPathComponent
 				let temporaryFileURL = temporaryDirectoryURL.appendingPathComponent(finalName)
 				Swift.print("Temporary media export file: \(temporaryFileURL)")
-
-                // Order out save panel as the export window will be shown.
-                savePanel.orderOut(nil)
 
                 let preset = AVAssetExportPresetAppleM4V720pHD
                 self.exportSession =                                            // 2
