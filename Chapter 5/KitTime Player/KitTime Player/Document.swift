@@ -215,7 +215,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     func findChapter(timeRange: CMTimeRange, reverse: Bool) -> Chapter? {
         var matchingChapter: Chapter? = nil
 		
-		for chapter in self.chapters.reversed() {
+		for chapter in reverse ? self.chapters.reversed() : self.chapters {
 			if chapter.isIn(timeRange) {                   // 8
                 matchingChapter = chapter
                 break
