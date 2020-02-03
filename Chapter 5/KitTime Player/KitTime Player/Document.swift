@@ -272,10 +272,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 				// • AVAssetExportSession will not overwrite files
 				// • AVAssetExportSession will not write files outside of your sandbox [kinda obvious, ed.]
 				
-				let globallyUniqueString = ProcessInfo.processInfo.globallyUniqueString
-				let temporaryDirectoryURL = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(globallyUniqueString)
+				let temporaryDirectoryURL: URL
 				do {
-					try FileManager.default.createDirectory(at: temporaryDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+					try temporaryDirectoryURL = FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: finalURL, create: true)
 				}
 				catch {
 					DispatchQueue.main.async(execute: {
@@ -284,6 +283,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 							return
 						}
 					})
+					
+					return
 				}
 				
 				let finalName = finalURL.lastPathComponent
