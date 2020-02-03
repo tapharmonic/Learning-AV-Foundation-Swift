@@ -274,7 +274,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 				
 				let temporaryDirectoryURL: URL
 				do {
-					try temporaryDirectoryURL = FileManager.default.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: finalURL, create: true)
+					try temporaryDirectoryURL = FileManager.default.url(for: .itemReplacementDirectory,
+																		in: .userDomainMask,
+																		appropriateFor: finalURL,
+																		create: true)
 				}
 				catch {
 					DispatchQueue.main.async(execute: {
@@ -343,7 +346,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 						}
 						else if exportSession.status == AVAssetExportSession.Status.completed {
 							do {
-								try _ = FileManager.default.replaceItemAt(finalURL, withItemAt: temporaryFileURL, backupItemName: nil, options: .usingNewMetadataOnly)
+								try _ = FileManager.default.replaceItemAt(finalURL,
+																		  withItemAt: temporaryFileURL,
+																		  backupItemName: nil,
+																		  options: .usingNewMetadataOnly)
 							}
 							catch {
 								DispatchQueue.main.async(execute: {
