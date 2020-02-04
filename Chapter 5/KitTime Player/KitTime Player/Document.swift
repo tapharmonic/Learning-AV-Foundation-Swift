@@ -80,6 +80,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			self.setupUI(for: playerItem)
 		}
 		
+		// TODO: Currently the AVPlayerView UI’s slider does not work.
+		// A workaround I have found (which is less then ideal) is to use
+		//playerView.player = AVPlayer(url: url)
         playerView.player = AVPlayer(playerItem: playerItem)
         playerView.showsSharingServiceButton = true
     }
