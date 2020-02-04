@@ -101,7 +101,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		}
 		
 		guard let asset = self.asset else {
-				return
+			return
 		}
 		
 		let title = self.titleForAsset(asset: asset)
