@@ -87,8 +87,20 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     }
 
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		guard self.playerItem?.status == AVPlayerItem.Status.readyToPlay,
-			let asset = self.asset else {
+		guard let playerItem = self.playerItem else {
+			return
+		}
+		
+		guard playerItem.status == AVPlayerItem.Status.readyToPlay else {
+			if playerItem.status == AVPlayerItem.Status.failed,
+				let error = playerItem.error {
+				self.showAlert(for: error)
+			}
+			
+			return
+		}
+		
+		guard let asset = self.asset else {
 				return
 		}
 		
@@ -103,7 +115,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			self.setupActionMenu()
 		}
 		
-        self.playerItem?.removeObserver(self, forKeyPath:STATUS_KEY)
+        playerItem.removeObserver(self, forKeyPath:STATUS_KEY)
     }
 
     func titleInMetadata(metadata: [AVMetadataItem]) -> String? {
@@ -125,7 +137,6 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     }
 
     func chaptersForAsset(asset: AVAsset) -> [Chapter] {
-
         let languages = NSLocale.preferredLanguages                     // 1
 
 		let metadataGroups = asset.chapterMetadataGroups(bestMatchingPreferredLanguages: languages)
@@ -291,12 +302,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					try temporaryDirectoryURL = Document.temporaryDirectory(forURL: finalURL)
 				}
 				catch {
-					DispatchQueue.main.async(execute: {
-						let temporaryDirectoryErrorAlert = NSAlert(error: error)
-						temporaryDirectoryErrorAlert.beginSheetModal(for: windowForSheet) { _ in
-							return
-						}
-					})
+					self.showAlert(for: error)
 					
 					self.exportSession = nil
 					
@@ -348,50 +354,64 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					completionHandler: nil)
 
 				exportSession.exportAsynchronously(completionHandler: {
-                    // Tear down.                                               // 6
+					// Tear down.                                               // 6
+					if exportSession.status == AVAssetExportSession.Status.failed,
+						let error = exportSession.error {
+						self.showAlert(for: error)
+					}
+					else if exportSession.status == AVAssetExportSession.Status.completed {
+						do {
+							try _ = FileManager.default.replaceItemAt(finalURL,
+																	  withItemAt: temporaryFileURL,
+																	  backupItemName: nil,
+																	  options: .usingNewMetadataOnly)
+						}
+						catch {
+							self.showAlert(for: error)
+						}
+					}
+					
+					// Doing the following last results in a less jarring visual experience.
+					// Doing this first would result in the `exportControllerWindow` retracting
+					// and, if the alert sheet above needs to be displayed,
+					// it sliding down immediatly afterwards leading to a fast yoyo-like motion.
 					DispatchQueue.main.async(execute: {
-						if exportSession.status == AVAssetExportSession.Status.failed,
-							let error = exportSession.error {
-							let exportErrorAlert = NSAlert(error: error)
-							exportErrorAlert.beginSheetModal(for: windowForSheet) { _ in
-								return
-							}
-						}
-						else if exportSession.status == AVAssetExportSession.Status.completed {
-							do {
-								try _ = FileManager.default.replaceItemAt(finalURL,
-																		  withItemAt: temporaryFileURL,
-																		  backupItemName: nil,
-																		  options: .usingNewMetadataOnly)
-							}
-							catch {
-								DispatchQueue.main.async(execute: {
-									let temporaryDirectoryErrorAlert = NSAlert(error: error)
-									temporaryDirectoryErrorAlert.beginSheetModal(for: windowForSheet) { _ in
-										return
-									}
-								})
-							}
-						}
-						
-						// Doing the following last results in a less jarring visual experience.
-						// Doing this first would result in the `exportControllerWindow` retracting
-						// and, if the alert sheet above needs to be displayed,
-						// it sliding down immediatly afterwards leading to a fast yoyo-like motion.
 						if let exportControllerWindow = exportController.window  {
 							windowForSheet.endSheet(exportControllerWindow)
 						}
 					})
 
-                    self.exportController = nil
-                    self.exportSession = nil
-                })
+					self.exportController = nil
+					self.exportSession = nil
+				})
             }
         }
     }
 	
 	func exportDidCancel() {
 		self.exportSession?.cancelExport()                                      // 7
+	}
+	
+	
+}
+
+
+// MARK: - Utility
+
+extension NSDocument {
+	
+	func showAlert(for error: Error) {
+		DispatchQueue.main.async(execute: {
+			// `self.windowForSheet` must be accessed from the main thread only.
+			guard let windowForSheet = self.windowForSheet else {
+				return
+			}
+			
+			let alert = NSAlert(error: error)
+			alert.beginSheetModal(for: windowForSheet) { _ in
+				return
+			}
+		})
 	}
 	
 }
