@@ -82,7 +82,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 							   options: [],
 							   context: nil)
 
-        playerView.player = AVPlayer(playerItem: self.playerItem)
+        playerView.player = AVPlayer(playerItem: playerItem)
         playerView.showsSharingServiceButton = true
     }
 
