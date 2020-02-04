@@ -30,12 +30,10 @@ import AVFoundation
 import AVKit
 
 
-let STATUS_KEY = "status"
-
-
 class Document: NSDocument, ExportWindowControllerDelegate {
 	var asset: AVAsset? = nil
 	var playerItem: AVPlayerItem? = nil
+	var observer: NSKeyValueObservation? = nil
 	var chapters: [Chapter] = []
 	var exportSession: AVAssetExportSession? = nil
 	var exportController: ExportWindowController? = nil
@@ -69,7 +67,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			return
 		}
 
-        let keys: [String] = ["commonMetadata", "availableChapterLocales"]       // 3
+        let keys: [String] = ["playable", "hasProtectedContent", "commonMetadata", "availableChapterLocales"]       // 3
 
 		self.playerItem = AVPlayerItem(asset: asset,          // 4
 									   automaticallyLoadedAssetKeys: keys)
@@ -77,23 +75,18 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			return
 		}
 
-		playerItem.addObserver(self,                                       // 5
-							   forKeyPath: STATUS_KEY,
-							   options: [],
-							   context: nil)
-
+		self.observer = playerItem.observe(\.status, options: []) {                                       // 5
+			(playerItem, change) in
+			self.setupUI(for: playerItem)
+		}
+		
         playerView.player = AVPlayer(playerItem: playerItem)
         playerView.showsSharingServiceButton = true
     }
-
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		guard keyPath == STATUS_KEY,
-			let playerItem = self.playerItem else {
-			return
-		}
-		
-		guard playerItem.status == AVPlayerItem.Status.readyToPlay else {
-			if playerItem.status == AVPlayerItem.Status.failed,
+	
+	func setupUI(for playerItem: AVPlayerItem) {
+		guard playerItem.status == .readyToPlay else {
+			if playerItem.status == .failed,
 				let error = playerItem.error {
 				self.showAlert(for: error)
 			}
@@ -116,9 +109,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			self.setupActionMenu()
 		}
 		
-        playerItem.removeObserver(self, forKeyPath:STATUS_KEY)
-    }
-
+		self.observer?.invalidate()
+	}
+	
     func titleInMetadata(metadata: [AVMetadataItem]) -> String? {
 		let items = AVMetadataItem.metadataItems(from: metadata,
 												 withKey: AVMetadataKey.commonKeyTitle,
