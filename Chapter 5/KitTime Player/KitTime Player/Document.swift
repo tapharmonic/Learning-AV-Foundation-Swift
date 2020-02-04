@@ -87,7 +87,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     }
 
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		guard let playerItem = self.playerItem else {
+		guard keyPath == STATUS_KEY,
+			let playerItem = self.playerItem else {
 			return
 		}
 		
