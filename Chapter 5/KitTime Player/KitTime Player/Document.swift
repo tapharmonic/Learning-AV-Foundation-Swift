@@ -72,14 +72,15 @@ class Document: NSDocument, ExportWindowControllerDelegate {
         let keys: [String] = ["commonMetadata", "availableChapterLocales"]       // 3
 
 		self.playerItem = AVPlayerItem(asset: asset,          // 4
-                               automaticallyLoadedAssetKeys: keys)
+									   automaticallyLoadedAssetKeys: keys)
 		guard let playerItem = self.playerItem else {
 			return
 		}
 
-        playerItem.addObserver(self,                                       // 5
-                          forKeyPath:STATUS_KEY,
-						  options:[], context:nil)
+		playerItem.addObserver(self,                                       // 5
+							   forKeyPath: STATUS_KEY,
+							   options: [],
+							   context: nil)
 
         playerView.player = AVPlayer(playerItem: self.playerItem)
         playerView.showsSharingServiceButton = true
@@ -260,8 +261,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 	}
 	
     @IBAction func startExporting(_ sender: AnyObject) {
-		guard let windowForSheet = self.windowForSheet,
-			let asset = self.asset else {
+		guard let asset = self.asset,
+			let windowForSheet = self.windowForSheet else {
 			return
 		}
 		
