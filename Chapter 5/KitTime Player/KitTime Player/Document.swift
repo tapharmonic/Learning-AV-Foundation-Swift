@@ -58,7 +58,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     @objc dynamic var enableNoVideoSignaling = false
     @objc dynamic var unplayableFile = false
 
-	@IBOutlet var playerView: AVPlayerView?;
+    @IBOutlet var playerView: AVPlayerView?;
 
 	
 	// MARK: - NSDocument Methods
@@ -457,7 +457,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     }
 	
 	func exportDidCancel() {
-		self.exportSession?.cancelExport()                                      // 7
+		self.exportSession?.cancelExport()      // 7
 	}
 	
 
