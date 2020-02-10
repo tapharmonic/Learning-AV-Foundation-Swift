@@ -58,31 +58,56 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     // MARK: - Setup
 
     func setupPlaybackStackWithURL(url: URL) {
-		guard let playerView = self.playerView else {
-			return
-		}
-
-		self.asset = AVAsset(url: url)
-		guard let asset = self.asset else {
-			return
-		}
-
+        self.asset = AVAsset(url: url)
+        guard let asset = self.asset else {
+            return
+        }
+        
         let keys: [String] = ["playable", "hasProtectedContent", "commonMetadata", "availableChapterLocales"]       // 3
+        
+        self.playerItem = AVPlayerItem(asset: asset)          // 4
+        
+        asset.loadValuesAsynchronously(forKeys: keys) {       // 4
+            DispatchQueue.main.async {
+                // The asset invokes its completion handler on an arbitrary queue when loading is complete.
+                // Because we want to access our AVPlayer in our ensuing set-up, we must dispatch our handler to the main queue.
+                self.setUpPlayback(ofAsset: asset, withKeys: keys)
+            }
+        }
+    }
 
-		self.playerItem = AVPlayerItem(asset: asset,          // 4
-									   automaticallyLoadedAssetKeys: keys)
-		guard let playerItem = self.playerItem else {
-			return
-		}
-
-		self.observer = playerItem.observe(\.status, options: []) {                                       // 5
-			(playerItem, change) in
-			self.setupUI(for: playerItem)
-		}
-		
-		// TODO: Currently the AVPlayerView UI’s slider does not work.
-		// A workaround I have found (which is less then ideal) is to use
-		//playerView.player = AVPlayer(url: url)
+    func setUpPlayback(ofAsset asset: AVAsset, withKeys keys: [String]) {
+        // First test whether the values of each of the keys we need have been successfully loaded.
+        for key in keys {
+            var error: NSError? = nil
+            
+            if asset.statusOfValue(forKey: key, error: &error) == .failed {
+                //self.stopLoadingAnimation()
+                //self.handleError(error)
+                return
+            }
+        }
+        
+        if !asset.isPlayable || asset.hasProtectedContent {
+            // We can't play this asset. Show the "Unplayable Asset" label.
+            //self.stopLoadingAnimation()
+            //self.unplayableLabel?.isHidden = false
+            return
+        }
+        
+        guard let playerItem = self.playerItem else {
+            return
+        }
+        
+        self.observer = playerItem.observe(\.status, options: []) { // 5
+            (playerItem, change) in
+            self.setupUI(for: playerItem)
+        }
+        
+        guard let playerView = self.playerView else {
+            return
+        }
+        
         playerView.player = AVPlayer(playerItem: playerItem)
         playerView.showsSharingServiceButton = true
     }

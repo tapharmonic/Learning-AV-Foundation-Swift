@@ -72,6 +72,7 @@
 				C43BDA7218010C6600AD0F16 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		C43BDA7218010C6600AD0F16 /* Products */ = {
 			isa = PBXGroup;
