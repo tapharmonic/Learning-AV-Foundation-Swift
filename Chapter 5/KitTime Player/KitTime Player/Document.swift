@@ -67,6 +67,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
         
         self.playerItem = AVPlayerItem(asset: asset)          // 4
         
+        // If needed, configure player item here (example: adding outputs, setting text style rules, selecting media options) before associating it with a player.
+        
         asset.loadValuesAsynchronously(forKeys: keys) {       // 4
             DispatchQueue.main.async {
                 // The asset invokes its completion handler on an arbitrary queue when loading is complete.
