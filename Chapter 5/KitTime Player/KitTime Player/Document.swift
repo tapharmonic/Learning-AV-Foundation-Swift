@@ -199,7 +199,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		guard let asset = self.asset else {
 			return
 		}
-		
+        
 		let title = self.titleForAsset(asset: asset)
 		if let title = title {
 			self.windowForSheet?.title = title
