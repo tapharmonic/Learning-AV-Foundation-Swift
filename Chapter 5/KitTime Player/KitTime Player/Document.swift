@@ -58,7 +58,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     @objc dynamic var enableNoVideoSignaling = false
     @objc dynamic var unplayableFile = false
 
-    @IBOutlet var playerView: AVPlayerView?;
+    @IBOutlet var playerView: AVPlayerView?
 
 	
 	// MARK: - NSDocument Methods
