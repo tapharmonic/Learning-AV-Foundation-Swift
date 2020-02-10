@@ -59,6 +59,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     @objc dynamic var unplayableFile = false
     
     @IBOutlet var playerView: AVPlayerView?
+    @IBOutlet var aspectRatioConstraint: NSLayoutConstraint?
     
     
 	// MARK: - NSDocument Methods
@@ -131,9 +132,36 @@ class Document: NSDocument, ExportWindowControllerDelegate {
         
         // We can play this asset.
         
-        if asset.tracks(withMediaType: AVMediaType.video).count == 0 {
+        let videoTracks = asset.tracks(withMediaType: AVMediaType.video)
+        if videoTracks.count == 0 {
             // This asset has no video tracks. Show the "No Video" label.
             self.noVideoTracks = true
+        }
+        else {
+            guard let videoTrack = videoTracks.first,
+                let playerView = self.playerView,
+                let aspectRatioConstraintBefore = self.aspectRatioConstraint else {
+                    return
+            }
+            
+            let naturalSize = videoTrack.naturalSize
+            let naturalAspectRatio = naturalSize.width/naturalSize.height
+            
+            playerView.removeConstraint(aspectRatioConstraintBefore)
+            
+            self.aspectRatioConstraint = NSLayoutConstraint.init(item: playerView,
+                                                                 attribute: .width,
+                                                                 relatedBy: .equal,
+                                                                 toItem: playerView,
+                                                                 attribute: .height,
+                                                                 multiplier: naturalAspectRatio,
+                                                                 constant: 0)
+            
+            guard let aspectRatioConstraintAfter = self.aspectRatioConstraint else {
+                return
+            }
+            
+            playerView.addConstraint(aspectRatioConstraintAfter)
         }
         
         guard let playerItem = self.playerItem else {

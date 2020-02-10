@@ -9,6 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="KitTime_Player" customModuleProvider="target">
             <connections>
+                <outlet property="aspectRatioConstraint" destination="vBW-W0-Hxw" id="Fs6-SE-fLr"/>
                 <outlet property="playerView" destination="yfh-YO-8JT" id="UE4-lj-ftW"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
