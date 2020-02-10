@@ -9,10 +9,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="KitTime_Player" customModuleProvider="target">
             <connections>
-                <outlet property="loadingSpinner" destination="i8N-Qd-ZF8" id="YTe-0c-Jn6"/>
-                <outlet property="noVideoLabel" destination="y0C-CT-MAK" id="kys-dq-vEw"/>
                 <outlet property="playerView" destination="yfh-YO-8JT" id="UE4-lj-ftW"/>
-                <outlet property="unplayableLabel" destination="VyC-Vp-6BB" id="nNC-ao-z83"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
