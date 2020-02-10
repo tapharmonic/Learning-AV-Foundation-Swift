@@ -57,10 +57,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
     @objc dynamic var noVideoTracks = false
     @objc dynamic var enableNoVideoSignaling = false
     @objc dynamic var unplayableFile = false
-
+    
     @IBOutlet var playerView: AVPlayerView?
-
-	
+    
+    
 	// MARK: - NSDocument Methods
 
 	override var windowNibName: NSNib.Name? {
@@ -81,7 +81,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			self.setupPlaybackStackWithURL(url: fileURL)
 		}
     }
-
+    
     // MARK: - Setup
 
     func setupPlaybackStackWithURL(url: URL) {
