@@ -116,9 +116,10 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 	
 	func setupUI(for playerItem: AVPlayerItem) {
 		guard playerItem.status == .readyToPlay else {
-			if playerItem.status == .failed,
-				let error = playerItem.error {
-				self.showAlert(for: error)
+            if playerItem.status == .failed {
+                if let error = playerItem.error {
+                    self.handleError(error)
+                }
 			}
 			
 			return
@@ -326,7 +327,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					try temporaryDirectoryURL = Document.temporaryDirectory(forURL: finalURL)
 				}
 				catch {
-					self.showAlert(for: error)
+					self.handleError(error)
 					
 					self.exportSession = nil
 					
@@ -381,7 +382,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 					// Tear down.                                               // 6
 					if exportSession.status == AVAssetExportSession.Status.failed,
 						let error = exportSession.error {
-						self.showAlert(for: error)
+						self.handleError(error)
 					}
 					else if exportSession.status == AVAssetExportSession.Status.completed {
 						do {
@@ -391,7 +392,7 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 																	  options: .usingNewMetadataOnly)
 						}
 						catch {
-							self.showAlert(for: error)
+							self.handleError(error)
 						}
 					}
 					
@@ -424,18 +425,19 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 
 extension NSDocument {
 	
-	func showAlert(for error: Error) {
-		DispatchQueue.main.async(execute: {
+	func handleError(_ error: Error) {
+		DispatchQueue.main.async {
 			// `self.windowForSheet` must be accessed from the main thread only.
 			guard let windowForSheet = self.windowForSheet else {
 				return
 			}
-			
-			let alert = NSAlert(error: error)
-			alert.beginSheetModal(for: windowForSheet) { _ in
-				return
-			}
-		})
+            
+            self.presentError(error,
+                              modalFor: windowForSheet,
+                              delegate: nil,
+                              didPresent: nil,
+                              contextInfo: nil)
+		}
 	}
 	
 }
