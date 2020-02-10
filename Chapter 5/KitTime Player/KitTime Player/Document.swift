@@ -30,6 +30,13 @@ import AVFoundation
 import AVKit
 
 
+enum LoadingStates {
+    case loading
+    case loadingAndSignaling
+    case ended
+}
+
+
 class Document: NSDocument, ExportWindowControllerDelegate {
 	var asset: AVAsset? = nil
 	var playerItem: AVPlayerItem? = nil
@@ -37,6 +44,19 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 	var chapters: [Chapter] = []
 	var exportSession: AVAssetExportSession? = nil
 	var exportController: ExportWindowController? = nil
+    
+    var loadingState: LoadingStates = .loading
+    let loadingSignalDelay = 1.0
+    
+    @objc dynamic var loadingSignal: Bool {
+        get {
+            return (loadingState == .loadingAndSignaling)
+        }
+    }
+    
+    @objc dynamic var noVideoTracks = false
+    @objc dynamic var enableNoVideoSignaling = false
+    @objc dynamic var unplayableFile = false
 
 	@IBOutlet var playerView: AVPlayerView?;
 
@@ -49,7 +69,14 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         super.windowControllerDidLoadNib(windowController)
-		
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + loadingSignalDelay) {
+            [weak self] in
+            if self?.loadingState == .loading {
+                self?.loadingState = .loadingAndSignaling
+            }
+        }
+
 		if let fileURL = self.fileURL {
 			self.setupPlaybackStackWithURL(url: fileURL)
 		}
@@ -84,17 +111,29 @@ class Document: NSDocument, ExportWindowControllerDelegate {
             var error: NSError? = nil
             
             if asset.statusOfValue(forKey: key, error: &error) == .failed {
-                //self.stopLoadingAnimation()
-                //self.handleError(error)
+                self.stopLoadingAnimation()
+                
+                if let error = error {
+                    self.handleError(error)
+                }
+                
                 return
             }
         }
         
         if !asset.isPlayable || asset.hasProtectedContent {
             // We can't play this asset. Show the "Unplayable Asset" label.
-            //self.stopLoadingAnimation()
-            //self.unplayableLabel?.isHidden = false
+            self.stopLoadingAnimation()
+            self.unplayableFile = true
+            
             return
+        }
+        
+        // We can play this asset.
+        
+        if asset.tracks(withMediaType: AVMediaType.video).count == 0 {
+            // This asset has no video tracks. Show the "No Video" label.
+            self.noVideoTracks = true
         }
         
         guard let playerItem = self.playerItem else {
@@ -117,6 +156,8 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 	func setupUI(for playerItem: AVPlayerItem) {
 		guard playerItem.status == .readyToPlay else {
             if playerItem.status == .failed {
+                self.stopLoadingAnimation()
+                
                 if let error = playerItem.error {
                     self.handleError(error)
                 }
@@ -124,7 +165,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 			
 			return
 		}
-		
+            
+        self.stopLoadingAnimation()
+        
 		guard let asset = self.asset else {
 			return
 		}
@@ -417,7 +460,15 @@ class Document: NSDocument, ExportWindowControllerDelegate {
 		self.exportSession?.cancelExport()                                      // 7
 	}
 	
-	
+
+    // MARK: - UI
+
+    func stopLoadingAnimation() {
+        DispatchQueue.main.async {
+            self.loadingState = .ended
+        }
+    }
+
 }
 
 

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16085" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.AVKitIBPlugin" version="15705"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.AVKitIBPlugin" version="16085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16085"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="KitTime_Player" customModuleProvider="target">
             <connections>
+                <outlet property="loadingSpinner" destination="i8N-Qd-ZF8" id="YTe-0c-Jn6"/>
+                <outlet property="noVideoLabel" destination="y0C-CT-MAK" id="kys-dq-vEw"/>
                 <outlet property="playerView" destination="yfh-YO-8JT" id="UE4-lj-ftW"/>
+                <outlet property="unplayableLabel" destination="VyC-Vp-6BB" id="nNC-ao-z83"/>
                 <outlet property="window" destination="5" id="18"/>
             </connections>
         </customObject>
@@ -30,11 +33,89 @@
                             <constraint firstAttribute="width" secondItem="yfh-YO-8JT" secondAttribute="height" multiplier="16:9" id="vBW-W0-Hxw"/>
                         </constraints>
                     </avPlayerView>
+                    <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWK-72-tUU" userLabel="Custom View">
+                        <rect key="frame" x="66" y="-11" width="508" height="382"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="i8N-Qd-ZF8" userLabel="Async Arrows">
+                                <rect key="frame" x="238" y="175" width="32" height="32"/>
+                                <contentFilters>
+                                    <ciFilter name="CIColorInvert">
+                                        <configuration>
+                                            <null key="inputImage"/>
+                                        </configuration>
+                                    </ciFilter>
+                                </contentFilters>
+                                <connections>
+                                    <binding destination="-2" name="animate" keyPath="loadingSignal" id="Nz7-MW-R7u"/>
+                                    <binding destination="-2" name="hidden" keyPath="loadingSignal" id="i9S-SG-33d">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </progressIndicator>
+                            <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y0C-CT-MAK">
+                                <rect key="frame" x="204" y="176" width="100" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="QcW-io-f95"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="No Video" id="SuN-uV-fad">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="hidden2" keyPath="enableNoVideoSignaling" previousBinding="Kaf-Iq-rPw" id="f8U-At-kTA">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="hidden" keyPath="noVideoTracks" id="Kaf-Iq-rPw">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VyC-Vp-6BB">
+                                <rect key="frame" x="161" y="176" width="186" height="29"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Unplayable Asset" id="yGd-K4-aQD">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="hidden" keyPath="unplayableFile" id="Nke-42-0rv">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="VyC-Vp-6BB" firstAttribute="baseline" secondItem="y0C-CT-MAK" secondAttribute="baseline" id="4vM-OL-cM8"/>
+                            <constraint firstItem="y0C-CT-MAK" firstAttribute="centerX" secondItem="PWK-72-tUU" secondAttribute="centerX" id="CTu-eQ-i6J"/>
+                            <constraint firstItem="VyC-Vp-6BB" firstAttribute="centerX" secondItem="y0C-CT-MAK" secondAttribute="centerX" id="N0n-JD-2uS"/>
+                            <constraint firstItem="VyC-Vp-6BB" firstAttribute="firstBaseline" secondItem="y0C-CT-MAK" secondAttribute="firstBaseline" id="RNO-wu-JPq"/>
+                            <constraint firstItem="y0C-CT-MAK" firstAttribute="centerY" secondItem="i8N-Qd-ZF8" secondAttribute="centerY" id="X3q-3E-Eju"/>
+                            <constraint firstItem="VyC-Vp-6BB" firstAttribute="centerX" secondItem="i8N-Qd-ZF8" secondAttribute="centerX" id="hqk-7W-49L"/>
+                            <constraint firstItem="VyC-Vp-6BB" firstAttribute="centerY" secondItem="PWK-72-tUU" secondAttribute="centerY" id="mKj-7r-Ic7"/>
+                        </constraints>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yfh-YO-8JT" firstAttribute="leading" secondItem="6" secondAttribute="leading" id="6A3-zK-5Kj"/>
                     <constraint firstAttribute="bottom" secondItem="yfh-YO-8JT" secondAttribute="bottom" id="JWa-8c-4Vt"/>
+                    <constraint firstItem="PWK-72-tUU" firstAttribute="top" secondItem="6" secondAttribute="top" constant="-11" id="NrG-1i-2ec"/>
+                    <constraint firstItem="PWK-72-tUU" firstAttribute="centerX" secondItem="yfh-YO-8JT" secondAttribute="centerX" id="X6T-OL-eF3"/>
+                    <constraint firstItem="PWK-72-tUU" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="66" id="Ys0-CY-GMj"/>
                     <constraint firstItem="yfh-YO-8JT" firstAttribute="top" secondItem="6" secondAttribute="top" id="bXt-w8-CVS"/>
+                    <constraint firstItem="PWK-72-tUU" firstAttribute="centerY" secondItem="yfh-YO-8JT" secondAttribute="centerY" id="imv-ti-QFF"/>
                     <constraint firstAttribute="trailing" secondItem="yfh-YO-8JT" secondAttribute="trailing" id="uba-Ym-c18"/>
                 </constraints>
             </view>
@@ -44,5 +125,6 @@
             <point key="canvasLocation" x="140" y="147"/>
         </window>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <userDefaultsController representsSharedInstance="YES" id="zyj-nA-50b"/>
     </objects>
 </document>
