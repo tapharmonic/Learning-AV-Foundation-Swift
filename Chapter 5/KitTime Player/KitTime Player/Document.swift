@@ -138,30 +138,30 @@ class Document: NSDocument, ExportWindowControllerDelegate {
             self.noVideoTracks = true
         }
         else {
-            guard let videoTrack = videoTracks.first,
-                let playerView = self.playerView,
+            guard let playerView = self.playerView,
                 let aspectRatioConstraintBefore = self.aspectRatioConstraint else {
                     return
             }
             
-            let naturalSize = videoTrack.naturalSize
-            let naturalAspectRatio = naturalSize.width/naturalSize.height
-            
-            playerView.removeConstraint(aspectRatioConstraintBefore)
-            
-            self.aspectRatioConstraint = NSLayoutConstraint.init(item: playerView,
-                                                                 attribute: .width,
-                                                                 relatedBy: .equal,
-                                                                 toItem: playerView,
-                                                                 attribute: .height,
-                                                                 multiplier: naturalAspectRatio,
-                                                                 constant: 0)
-            
-            guard let aspectRatioConstraintAfter = self.aspectRatioConstraint else {
-                return
+            if let screenSize = asset.screenSize {
+                let screenAspectRatio = screenSize.width/screenSize.height
+                
+                playerView.removeConstraint(aspectRatioConstraintBefore)
+                
+                self.aspectRatioConstraint = NSLayoutConstraint.init(item: playerView,
+                                                                     attribute: .width,
+                                                                     relatedBy: .equal,
+                                                                     toItem: playerView,
+                                                                     attribute: .height,
+                                                                     multiplier: screenAspectRatio,
+                                                                     constant: 0)
+                
+                guard let aspectRatioConstraintAfter = self.aspectRatioConstraint else {
+                    return
+                }
+                
+                playerView.addConstraint(aspectRatioConstraintAfter)
             }
-            
-            playerView.addConstraint(aspectRatioConstraintAfter)
         }
         
         guard let playerItem = self.playerItem else {
@@ -519,4 +519,17 @@ extension NSDocument {
 		}
 	}
 	
+}
+
+// Based on https://stackoverflow.com/a/48361424
+// from https://stackoverflow.com/questions/10433774/avurlasset-getting-video-size
+extension AVAsset {
+    var screenSize: CGSize? {
+        if let track = tracks(withMediaType: .video).first {
+            let size = track.naturalSize.applying(track.preferredTransform)
+            return CGSize(width: abs(size.width), height: abs(size.height))
+        }
+        
+        return nil
+    }
 }
