@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3D52AF0523E49D7800B3105B /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D52AF0423E49D7800B3105B /* Document.swift */; };
+		3D57A5C023E890E200275966 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57A5BF23E890E200275966 /* AppDelegate.swift */; };
+		3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7F264A23E732D8002B92CA /* ExportWindowController.swift */; };
+		3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCD3C223E71E0500BC047D /* Chapter.swift */; };
+		C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7A0180147AE001F667B /* CoreMedia.framework */; };
+		C439A7A61801617D001F667B /* ExportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C439A7A41801617D001F667B /* ExportWindow.xib */; };
+		C439A7BD1801755A001F667B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C439A7BC1801755A001F667B /* QuartzCore.framework */; };
+		C43BDA7518010C6600AD0F16 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDA7418010C6600AD0F16 /* Cocoa.framework */; };
+		C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */; };
+		C43BDA8518010C6600AD0F16 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8318010C6600AD0F16 /* Credits.rtf */; };
+		C43BDA8B18010C6600AD0F16 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8918010C6600AD0F16 /* Document.xib */; };
+		C43BDA8E18010C6600AD0F16 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8C18010C6600AD0F16 /* MainMenu.xib */; };
+		C43BDA9018010C6600AD0F16 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C43BDA8F18010C6600AD0F16 /* Images.xcassets */; };
+		C43BDAAC180118A800AD0F16 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDAAB180118A800AD0F16 /* AVFoundation.framework */; };
+		C43BDAAE180118B300AD0F16 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C43BDAAD180118B300AD0F16 /* AVKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3D52AF0423E49D7800B3105B /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		3D57A5BF23E890E200275966 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3D7F264A23E732D8002B92CA /* ExportWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportWindowController.swift; sourceTree = "<group>"; };
+		3DFCD3C223E71E0500BC047D /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
+		C439A7A0180147AE001F667B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C439A7A41801617D001F667B /* ExportWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportWindow.xib; sourceTree = "<group>"; };
+		C439A7AE18017472001F667B /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = System/Library/Frameworks/QTKit.framework; sourceTree = SDKROOT; };
+		C439A7BC1801755A001F667B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C43BDA7118010C6600AD0F16 /* KitTime Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KitTime Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C43BDA7418010C6600AD0F16 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C43BDA7718010C6600AD0F16 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		C43BDA7818010C6600AD0F16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C43BDA7918010C6600AD0F16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C43BDA7C18010C6600AD0F16 /* KitTime Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KitTime Player-Info.plist"; sourceTree = "<group>"; };
+		C43BDA7E18010C6600AD0F16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C43BDA8418010C6600AD0F16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		C43BDA8A18010C6600AD0F16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		C43BDA8D18010C6600AD0F16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C43BDA8F18010C6600AD0F16 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C43BDA9618010C6600AD0F16 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C43BDAAB180118A800AD0F16 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C43BDAAD180118B300AD0F16 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C43BDA6E18010C6600AD0F16 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C439A7BD1801755A001F667B /* QuartzCore.framework in Frameworks */,
+				C439A7A1180147AE001F667B /* CoreMedia.framework in Frameworks */,
+				C43BDAAE180118B300AD0F16 /* AVKit.framework in Frameworks */,
+				C43BDAAC180118A800AD0F16 /* AVFoundation.framework in Frameworks */,
+				C43BDA7518010C6600AD0F16 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C43BDA6818010C6600AD0F16 = {
+			isa = PBXGroup;
+			children = (
+				C43BDA7A18010C6600AD0F16 /* KitTime Player */,
+				C43BDA7218010C6600AD0F16 /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+		C43BDA7218010C6600AD0F16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C43BDA7118010C6600AD0F16 /* KitTime Player.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C43BDA7318010C6600AD0F16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C439A7BC1801755A001F667B /* QuartzCore.framework */,
+				C439A7AE18017472001F667B /* QTKit.framework */,
+				C439A7A0180147AE001F667B /* CoreMedia.framework */,
+				C43BDAAD180118B300AD0F16 /* AVKit.framework */,
+				C43BDAAB180118A800AD0F16 /* AVFoundation.framework */,
+				C43BDA7418010C6600AD0F16 /* Cocoa.framework */,
+				C43BDA9618010C6600AD0F16 /* XCTest.framework */,
+				C43BDA7618010C6600AD0F16 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		C43BDA7618010C6600AD0F16 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C43BDA7718010C6600AD0F16 /* AppKit.framework */,
+				C43BDA7818010C6600AD0F16 /* CoreData.framework */,
+				C43BDA7918010C6600AD0F16 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		C43BDA7A18010C6600AD0F16 /* KitTime Player */ = {
+			isa = PBXGroup;
+			children = (
+				3D57A5BF23E890E200275966 /* AppDelegate.swift */,
+				3D52AF0423E49D7800B3105B /* Document.swift */,
+				C43BDA8918010C6600AD0F16 /* Document.xib */,
+				C439A7A41801617D001F667B /* ExportWindow.xib */,
+				3D7F264A23E732D8002B92CA /* ExportWindowController.swift */,
+				C43BDA8C18010C6600AD0F16 /* MainMenu.xib */,
+				C4A74576180230FB00D23083 /* Models */,
+				C43BDA7B18010C6600AD0F16 /* Supporting Files */,
+				C43BDA8F18010C6600AD0F16 /* Images.xcassets */,
+			);
+			path = "KitTime Player";
+			sourceTree = "<group>";
+		};
+		C43BDA7B18010C6600AD0F16 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C43BDA7C18010C6600AD0F16 /* KitTime Player-Info.plist */,
+				C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */,
+				C43BDA7318010C6600AD0F16 /* Frameworks */,
+				C43BDA8318010C6600AD0F16 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4A74576180230FB00D23083 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3DFCD3C223E71E0500BC047D /* Chapter.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C43BDA7018010C6600AD0F16 /* KitTime Player */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C43BDAA518010C6600AD0F16 /* Build configuration list for PBXNativeTarget "KitTime Player" */;
+			buildPhases = (
+				C43BDA6D18010C6600AD0F16 /* Sources */,
+				C43BDA6E18010C6600AD0F16 /* Frameworks */,
+				C43BDA6F18010C6600AD0F16 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KitTime Player";
+			productName = "KitTime Player";
+			productReference = C43BDA7118010C6600AD0F16 /* KitTime Player.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C43BDA6918010C6600AD0F16 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TH;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Bob McCune";
+				TargetAttributes = {
+					C43BDA7018010C6600AD0F16 = {
+						LastSwiftMigration = 1130;
+					};
+				};
+			};
+			buildConfigurationList = C43BDA6C18010C6600AD0F16 /* Build configuration list for PBXProject "KitTime Player" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C43BDA6818010C6600AD0F16;
+			productRefGroup = C43BDA7218010C6600AD0F16 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C43BDA7018010C6600AD0F16 /* KitTime Player */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C43BDA6F18010C6600AD0F16 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C43BDA8B18010C6600AD0F16 /* Document.xib in Resources */,
+				C439A7A61801617D001F667B /* ExportWindow.xib in Resources */,
+				C43BDA9018010C6600AD0F16 /* Images.xcassets in Resources */,
+				C43BDA7F18010C6600AD0F16 /* InfoPlist.strings in Resources */,
+				C43BDA8518010C6600AD0F16 /* Credits.rtf in Resources */,
+				C43BDA8E18010C6600AD0F16 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C43BDA6D18010C6600AD0F16 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D57A5C023E890E200275966 /* AppDelegate.swift in Sources */,
+				3D7F264B23E732D8002B92CA /* ExportWindowController.swift in Sources */,
+				3D52AF0523E49D7800B3105B /* Document.swift in Sources */,
+				3DFCD3C323E71E0500BC047D /* Chapter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C43BDA7D18010C6600AD0F16 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C43BDA7E18010C6600AD0F16 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C43BDA8318010C6600AD0F16 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C43BDA8418010C6600AD0F16 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		C43BDA8918010C6600AD0F16 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C43BDA8A18010C6600AD0F16 /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		C43BDA8C18010C6600AD0F16 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C43BDA8D18010C6600AD0F16 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C43BDAA318010C6600AD0F16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C43BDAA418010C6600AD0F16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		C43BDAA618010C6600AD0F16 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
+				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C43BDAA718010C6600AD0F16 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KitTime Player/KitTime Player-Prefix.pch";
+				INFOPLIST_FILE = "KitTime Player/KitTime Player-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tapharmonic.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C43BDA6C18010C6600AD0F16 /* Build configuration list for PBXProject "KitTime Player" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C43BDAA318010C6600AD0F16 /* Debug */,
+				C43BDAA418010C6600AD0F16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C43BDAA518010C6600AD0F16 /* Build configuration list for PBXNativeTarget "KitTime Player" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C43BDAA618010C6600AD0F16 /* Debug */,
+				C43BDAA718010C6600AD0F16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C43BDA6918010C6600AD0F16 /* Project object */;
+}
