@@ -38,6 +38,20 @@ enum LoadingStates {
 
 
 class Document: NSDocument, ExportWindowControllerDelegate {
+    
+    
+    // MARK: - Lifecycle
+    
+    deinit {
+        if let player = playerView?.player {
+            player.pause()
+            self.observer?.invalidate()
+        }
+    }
+    
+    
+    // MARK: - Properties
+    
 	var asset: AVAsset? = nil
 	var playerItem: AVPlayerItem? = nil
 	var observer: NSKeyValueObservation? = nil
@@ -168,9 +182,9 @@ class Document: NSDocument, ExportWindowControllerDelegate {
             return
         }
         
-        self.observer = playerItem.observe(\.status, options: []) { // 5
+        self.observer = playerItem.observe(\.status, options: []) { [weak self] // 5
             (playerItem, change) in
-            self.setupUI(for: playerItem)
+            self?.setupUI(for: playerItem)
         }
         
         guard let playerView = self.playerView else {
