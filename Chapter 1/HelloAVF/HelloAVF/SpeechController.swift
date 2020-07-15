@@ -27,29 +27,23 @@ import AVFoundation
 
 class SpeechController {
 
-    let synthesizer: AVSpeechSynthesizer
-    private let voices: [AVSpeechSynthesisVoice]
-    private let speechStrings: [String]
+    let synthesizer = AVSpeechSynthesizer()
 
-    init() {
-        synthesizer = AVSpeechSynthesizer()
+    private let voices = [
+        AVSpeechSynthesisVoice(language: "en-US")!,
+        AVSpeechSynthesisVoice(language: "en-GB")!
+    ]
 
-        voices = [
-            AVSpeechSynthesisVoice(language: "en-US")!,
-            AVSpeechSynthesisVoice(language: "en-GB")!
-        ]
-
-        speechStrings = [
-            "Hello AV Foundation. How are you?",
-            "I'm well! Thanks for asking.",
-            "Are you excited about the book?",
-            "Very! I have always felt so misunderstood.",
-            "What's your favorite feature?",
-            "Oh, they're all my babies.  I couldn't possibly choose.",
-            "It was great to speak with you!",
-            "The pleasure was all mine!  Have fun!"
-        ]
-    }
+    private let speechStrings = [
+        "Hello AV Foundation. How are you?",
+        "I'm well! Thanks for asking.",
+        "Are you excited about the book?",
+        "Very! I have always felt so misunderstood.",
+        "What's your favorite feature?",
+        "Oh, they're all my babies.  I couldn't possibly choose.",
+        "It was great to speak with you!",
+        "The pleasure was all mine!  Have fun!"
+    ]
 
     func beginConversation() {
         for i in 0..<speechStrings.count {
